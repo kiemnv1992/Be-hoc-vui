@@ -919,6 +919,116 @@ const CAT1_LESSONS = [
       ]},
     ]
   },
+  {
+    id: "1-8", name: "Chữ cái", icon: "🔠",
+    type: "identify",
+    questions: [
+      { prompt: "A", promptLabel: "Chữ A", instruction: "Đây là chữ gì?", options: [
+        {icon:"🔤", label:"Chữ A", correct:true},
+        {icon:"🔤", label:"Chữ B", correct:false},
+        {icon:"🔤", label:"Chữ C", correct:false},
+      ]},
+      { prompt: "B", promptLabel: "Chữ B", instruction: "Đây là chữ gì?", options: [
+        {icon:"🔤", label:"Chữ D", correct:false},
+        {icon:"🔤", label:"Chữ B", correct:true},
+        {icon:"🔤", label:"Chữ E", correct:false},
+      ]},
+      { prompt: "C", promptLabel: "Chữ C", instruction: "Đây là chữ gì?", options: [
+        {icon:"🔤", label:"Chữ C", correct:true},
+        {icon:"🔤", label:"Chữ G", correct:false},
+        {icon:"🔤", label:"Chữ O", correct:false},
+      ]},
+      { prompt: "D", promptLabel: "Chữ D", instruction: "Đây là chữ gì?", options: [
+        {icon:"🔤", label:"Chữ B", correct:false},
+        {icon:"🔤", label:"Chữ D", correct:true},
+        {icon:"🔤", label:"Chữ P", correct:false},
+      ]},
+      { prompt: "E", promptLabel: "Chữ E", instruction: "Đây là chữ gì?", options: [
+        {icon:"🔤", label:"Chữ E", correct:true},
+        {icon:"🔤", label:"Chữ F", correct:false},
+        {icon:"🔤", label:"Chữ H", correct:false},
+      ]},
+      { prompt: "O", promptLabel: "Chữ O", instruction: "Đây là chữ gì?", options: [
+        {icon:"🔤", label:"Chữ Q", correct:false},
+        {icon:"🔤", label:"Chữ O", correct:true},
+        {icon:"🔤", label:"Chữ C", correct:false},
+      ]},
+    ]
+  },
+  {
+    id: "1-9", name: "Mùa trong năm", icon: "🍂",
+    type: "identify",
+    questions: [
+      { prompt: "🌸🌿", promptLabel: "Hoa nở, cây xanh", instruction: "Đây là mùa gì?", options: [
+        {icon:"🌸", label:"Mùa xuân", correct:true},
+        {icon:"☀️", label:"Mùa hè", correct:false},
+        {icon:"🍂", label:"Mùa thu", correct:false},
+      ]},
+      { prompt: "☀️🏖️", promptLabel: "Nắng nóng, đi biển", instruction: "Đây là mùa gì?", options: [
+        {icon:"❄️", label:"Mùa đông", correct:false},
+        {icon:"☀️", label:"Mùa hè", correct:true},
+        {icon:"🌸", label:"Mùa xuân", correct:false},
+      ]},
+      { prompt: "🍂🍁", promptLabel: "Lá rụng, lá vàng", instruction: "Đây là mùa gì?", options: [
+        {icon:"🍂", label:"Mùa thu", correct:true},
+        {icon:"☀️", label:"Mùa hè", correct:false},
+        {icon:"❄️", label:"Mùa đông", correct:false},
+      ]},
+      { prompt: "❄️🧣", promptLabel: "Lạnh, mặc áo ấm", instruction: "Đây là mùa gì?", options: [
+        {icon:"🌸", label:"Mùa xuân", correct:false},
+        {icon:"🍂", label:"Mùa thu", correct:false},
+        {icon:"❄️", label:"Mùa đông", correct:true},
+      ]},
+    ]
+  },
+  {
+    id: "1-10", name: "Ngày & Đêm", icon: "🌓",
+    type: "identify",
+    questions: [
+      { prompt: "☀️🐓", promptLabel: "Mặt trời mọc, gà gáy", instruction: "Đây là lúc nào?", options: [
+        {icon:"🌅", label:"Buổi sáng", correct:true},
+        {icon:"🌙", label:"Buổi tối", correct:false},
+        {icon:"☀️", label:"Buổi trưa", correct:false},
+      ]},
+      { prompt: "☀️🔥", promptLabel: "Nắng to, nóng", instruction: "Đây là lúc nào?", options: [
+        {icon:"🌅", label:"Buổi sáng", correct:false},
+        {icon:"☀️", label:"Buổi trưa", correct:true},
+        {icon:"🌙", label:"Buổi tối", correct:false},
+      ]},
+      { prompt: "🌇🧡", promptLabel: "Mặt trời lặn", instruction: "Đây là lúc nào?", options: [
+        {icon:"🌇", label:"Buổi chiều", correct:true},
+        {icon:"🌅", label:"Buổi sáng", correct:false},
+        {icon:"🌙", label:"Buổi tối", correct:false},
+      ]},
+      { prompt: "🌙⭐", promptLabel: "Trăng sao, tối", instruction: "Đây là lúc nào?", options: [
+        {icon:"☀️", label:"Buổi trưa", correct:false},
+        {icon:"🌙", label:"Buổi tối", correct:true},
+        {icon:"🌇", label:"Buổi chiều", correct:false},
+      ]},
+    ]
+  },
+  {
+    id: "1-11", name: "Nặng & Nhẹ", icon: "⚖️",
+    type: "identify",
+    questions: [
+      { prompt: "🪨🪶", promptLabel: "Đá và Lông vũ", instruction: "Cái nào NẶNG hơn?", options: [
+        {icon:"🪨", label:"Hòn đá", correct:true},
+        {icon:"🪶", label:"Lông vũ", correct:false},
+      ]},
+      { prompt: "🐘🐁", promptLabel: "Voi và Chuột", instruction: "Con nào NHẸ hơn?", options: [
+        {icon:"🐁", label:"Con chuột", correct:true},
+        {icon:"🐘", label:"Con voi", correct:false},
+      ]},
+      { prompt: "🚗🚲", promptLabel: "Ô tô và Xe đạp", instruction: "Cái nào NẶNG hơn?", options: [
+        {icon:"🚗", label:"Ô tô", correct:true},
+        {icon:"🚲", label:"Xe đạp", correct:false},
+      ]},
+      { prompt: "📚🧻", promptLabel: "Chồng sách và Cuộn giấy", instruction: "Cái nào NẶNG hơn?", options: [
+        {icon:"📚", label:"Chồng sách", correct:true},
+        {icon:"🧻", label:"Cuộn giấy", correct:false},
+      ]},
+    ]
+  },
 ];
 
 // ---------- CATEGORY 2: GIAO TIẾP XÃ HỘI ----------
@@ -1085,6 +1195,74 @@ const CAT2_LESSONS = [
       { left: "👨‍🍳 Đầu bếp", right: "Nấu ăn" },
       { left: "👮 Công an", right: "Giữ gìn trật tự" },
       { left: "🧑‍🚒 Lính cứu hỏa", right: "Chữa cháy" },
+    ]
+  },
+  {
+    id: "2-7", name: "Lịch sự nơi công cộng", icon: "🏪",
+    type: "identify",
+    questions: [
+      { prompt: "🏥", promptLabel: "Ở bệnh viện", instruction: "Bạn nên làm gì?", options: [
+        {icon:"🤫", label:"Nói nhỏ, đi nhẹ", correct:true},
+        {icon:"📢", label:"Nói to, chạy nhảy", correct:false},
+        {icon:"🎵", label:"Mở nhạc to", correct:false},
+      ]},
+      { prompt: "📚", promptLabel: "Ở thư viện", instruction: "Bạn nên làm gì?", options: [
+        {icon:"🤫", label:"Giữ yên lặng", correct:true},
+        {icon:"📱", label:"Gọi điện thoại", correct:false},
+        {icon:"🗣️", label:"Nói chuyện to", correct:false},
+      ]},
+      { prompt: "🚌", promptLabel: "Trên xe buýt", instruction: "Bạn nên làm gì?", options: [
+        {icon:"💺", label:"Ngồi yên, nhường ghế", correct:true},
+        {icon:"🏃", label:"Chạy nhảy trên xe", correct:false},
+        {icon:"🍕", label:"Ăn uống bừa bãi", correct:false},
+      ]},
+      { prompt: "🛒", promptLabel: "Ở siêu thị", instruction: "Bạn nên làm gì?", options: [
+        {icon:"🚶", label:"Đi cùng bố mẹ", correct:true},
+        {icon:"🏃", label:"Chạy khắp nơi", correct:false},
+        {icon:"🖐️", label:"Sờ mọi thứ", correct:false},
+      ]},
+      { prompt: "⛪", promptLabel: "Ở nơi tôn nghiêm", instruction: "Bạn nên làm gì?", options: [
+        {icon:"🙏", label:"Tôn trọng, im lặng", correct:true},
+        {icon:"📢", label:"Hét to", correct:false},
+        {icon:"🏃", label:"Chạy nhảy", correct:false},
+      ]},
+    ]
+  },
+  {
+    id: "2-8", name: "Chia sẻ & Hợp tác", icon: "🤲",
+    type: "identify",
+    questions: [
+      { prompt: "🧸", promptLabel: "Bạn chỉ có 1 đồ chơi", instruction: "Bạn thấy bạn muốn chơi. Nên làm gì?", options: [
+        {icon:"🤝", label:"Chơi chung", correct:true},
+        {icon:"🙅", label:"Giấu đi", correct:false},
+        {icon:"😠", label:"Không cho ai", correct:false},
+      ]},
+      { prompt: "🍰", promptLabel: "Có 1 miếng bánh", instruction: "Bạn và em cùng muốn ăn. Nên làm gì?", options: [
+        {icon:"✂️", label:"Chia đôi", correct:true},
+        {icon:"😋", label:"Ăn hết một mình", correct:false},
+        {icon:"🏃", label:"Giành lấy", correct:false},
+      ]},
+      { prompt: "🎨", promptLabel: "Vẽ tranh nhóm", instruction: "Bạn cùng bạn vẽ tranh. Nên làm gì?", options: [
+        {icon:"🤝", label:"Cùng nhau vẽ", correct:true},
+        {icon:"🙅", label:"Vẽ một mình", correct:false},
+        {icon:"😠", label:"Giành bút màu", correct:false},
+      ]},
+      { prompt: "🏗️", promptLabel: "Xếp hình nhóm", instruction: "Bạn xếp hình cùng bạn. Nên làm gì?", options: [
+        {icon:"🗣️", label:"Bàn bạc cùng nhau", correct:true},
+        {icon:"💪", label:"Tự làm hết", correct:false},
+        {icon:"😤", label:"Phá đồ của bạn", correct:false},
+      ]},
+    ]
+  },
+  {
+    id: "2-9", name: "Xin phép", icon: "🙋",
+    type: "matching",
+    pairs: [
+      { left: "🍬 Muốn ăn kẹo", right: "Mẹ ơi cho con ăn kẹo!" },
+      { left: "📺 Muốn xem tivi", right: "Bố ơi con xem tivi nhé!" },
+      { left: "🏃 Muốn đi chơi", right: "Con đi chơi được không ạ?" },
+      { left: "🧸 Muốn mượn đồ", right: "Cho mình mượn nhé!" },
+      { left: "🚽 Muốn đi vệ sinh", right: "Cô ơi cho con đi ạ!" },
     ]
   },
 ];
@@ -1311,6 +1489,109 @@ const CAT3_LESSONS = [
       ]},
     ]
   },
+  {
+    id: "3-9", name: "Gia đình", icon: "👨‍👩‍👧‍👦",
+    type: "matching",
+    pairs: [
+      { left: "👨", right: "Bố / Ba" },
+      { left: "👩", right: "Mẹ / Má" },
+      { left: "👴", right: "Ông nội" },
+      { left: "👵", right: "Bà ngoại" },
+      { left: "👦", right: "Anh trai" },
+      { left: "👧", right: "Chị gái" },
+    ]
+  },
+  {
+    id: "3-10", name: "Âm thanh", icon: "🔔",
+    type: "identify",
+    questions: [
+      { prompt: "🐶", promptLabel: "Gâu gâu!", instruction: "Con nào kêu GÂU GÂU?", options: [
+        {icon:"🐶", label:"Con chó", correct:true},
+        {icon:"🐱", label:"Con mèo", correct:false},
+        {icon:"🐸", label:"Con ếch", correct:false},
+      ]},
+      { prompt: "🐱", promptLabel: "Meo meo!", instruction: "Con nào kêu MEO MEO?", options: [
+        {icon:"🐶", label:"Con chó", correct:false},
+        {icon:"🐱", label:"Con mèo", correct:true},
+        {icon:"🐓", label:"Con gà", correct:false},
+      ]},
+      { prompt: "🐓", promptLabel: "Ò ó o!", instruction: "Con nào kêu Ò Ó O?", options: [
+        {icon:"🐓", label:"Con gà", correct:true},
+        {icon:"🦆", label:"Con vịt", correct:false},
+        {icon:"🐦", label:"Con chim", correct:false},
+      ]},
+      { prompt: "🐸", promptLabel: "Ộp ộp!", instruction: "Con nào kêu ỘP ỘP?", options: [
+        {icon:"🐱", label:"Con mèo", correct:false},
+        {icon:"🐸", label:"Con ếch", correct:true},
+        {icon:"🐶", label:"Con chó", correct:false},
+      ]},
+      { prompt: "🐄", promptLabel: "Ò ò!", instruction: "Con nào kêu Ò Ò?", options: [
+        {icon:"🐄", label:"Con bò", correct:true},
+        {icon:"🐷", label:"Con lợn", correct:false},
+        {icon:"🐑", label:"Con cừu", correct:false},
+      ]},
+      { prompt: "🦆", promptLabel: "Quạc quạc!", instruction: "Con nào kêu QUẠC QUẠC?", options: [
+        {icon:"🐓", label:"Con gà", correct:false},
+        {icon:"🦆", label:"Con vịt", correct:true},
+        {icon:"🐦", label:"Con chim", correct:false},
+      ]},
+    ]
+  },
+  {
+    id: "3-11", name: "Từ trái nghĩa", icon: "↔️",
+    type: "matching",
+    pairs: [
+      { left: "⬆️ Cao", right: "Thấp ⬇️" },
+      { left: "🔥 Nóng", right: "Lạnh ❄️" },
+      { left: "😊 Vui", right: "Buồn 😢" },
+      { left: "🌞 Sáng", right: "Tối 🌑" },
+      { left: "🐘 To", right: "Nhỏ 🐁" },
+      { left: "🏃 Nhanh", right: "Chậm 🐢" },
+    ]
+  },
+  {
+    id: "3-12", name: "Hoa quả Việt Nam", icon: "🥥",
+    type: "identify",
+    questions: [
+      { prompt: "🥥", instruction: "Đây là quả gì?", options: [
+        {icon:"🥥", label:"Quả dừa", correct:true},
+        {icon:"🍉", label:"Dưa hấu", correct:false},
+        {icon:"🥭", label:"Quả xoài", correct:false},
+      ]},
+      { prompt: "🍍", instruction: "Đây là quả gì?", options: [
+        {icon:"🍍", label:"Quả dứa", correct:true},
+        {icon:"🍊", label:"Quả cam", correct:false},
+        {icon:"🍋", label:"Quả chanh", correct:false},
+      ]},
+      { prompt: "🍑", instruction: "Đây là quả gì?", options: [
+        {icon:"🍎", label:"Quả táo", correct:false},
+        {icon:"🍑", label:"Quả đào", correct:true},
+        {icon:"🥭", label:"Quả xoài", correct:false},
+      ]},
+      { prompt: "🍋", instruction: "Đây là quả gì?", options: [
+        {icon:"🍋", label:"Quả chanh", correct:true},
+        {icon:"🍊", label:"Quả cam", correct:false},
+        {icon:"🍌", label:"Quả chuối", correct:false},
+      ]},
+      { prompt: "🫒", instruction: "Đây là quả gì?", options: [
+        {icon:"🍇", label:"Quả nho", correct:false},
+        {icon:"🫒", label:"Quả ô liu", correct:true},
+        {icon:"🥝", label:"Quả kiwi", correct:false},
+      ]},
+    ]
+  },
+  {
+    id: "3-13", name: "Đồ dùng ăn uống", icon: "🍽️",
+    type: "matching",
+    pairs: [
+      { left: "🥄", right: "Cái thìa" },
+      { left: "🍴", right: "Cái nĩa" },
+      { left: "🥢", right: "Đôi đũa" },
+      { left: "🥣", right: "Cái bát" },
+      { left: "🥛", right: "Cái cốc" },
+      { left: "🍶", right: "Cái bình" },
+    ]
+  },
 ];
 
 // ---------- CATEGORY 4: SINH HOẠT ----------
@@ -1453,6 +1734,125 @@ const CAT4_LESSONS = [
       { icon: "🧽", label: "Kỳ cọ sạch" },
       { icon: "🚿", label: "Xả nước sạch" },
       { icon: "🧖", label: "Lau khô người" },
+    ]
+  },
+  {
+    id: "4-9", name: "Đi siêu thị", icon: "🛒",
+    type: "sequence",
+    title: "Các bước đi siêu thị",
+    steps: [
+      { icon: "📝", label: "Viết danh sách cần mua" },
+      { icon: "🚗", label: "Đi đến siêu thị" },
+      { icon: "🛒", label: "Lấy xe đẩy" },
+      { icon: "🍎", label: "Chọn đồ vào xe" },
+      { icon: "💰", label: "Xếp hàng trả tiền" },
+      { icon: "🏠", label: "Mang đồ về nhà" },
+    ]
+  },
+  {
+    id: "4-10", name: "Khi bị ốm", icon: "🤒",
+    type: "identify",
+    questions: [
+      { prompt: "🤒", promptLabel: "Bé bị sốt!", instruction: "Khi bị sốt, bé nên làm gì?", options: [
+        {icon:"🛏️", label:"Nằm nghỉ ngơi", correct:true},
+        {icon:"🏃", label:"Chạy nhảy tiếp", correct:false},
+        {icon:"🍦", label:"Ăn kem", correct:false},
+      ]},
+      { prompt: "🤧", promptLabel: "Bé bị hắt hơi!", instruction: "Khi hắt hơi, bé nên làm gì?", options: [
+        {icon:"🤧", label:"Che miệng lại", correct:true},
+        {icon:"😮", label:"Hắt hơi tự do", correct:false},
+        {icon:"🏃", label:"Chạy đi chỗ khác", correct:false},
+      ]},
+      { prompt: "🤕", promptLabel: "Bé bị đau!", instruction: "Khi bị đau, bé nên nói với ai?", options: [
+        {icon:"👨‍👩‍👧", label:"Nói với bố mẹ", correct:true},
+        {icon:"🤫", label:"Giấu đi không nói", correct:false},
+        {icon:"😭", label:"Chỉ khóc thôi", correct:false},
+      ]},
+      { prompt: "💊", promptLabel: "Uống thuốc", instruction: "Ai cho bé uống thuốc?", options: [
+        {icon:"👩", label:"Bố mẹ cho uống", correct:true},
+        {icon:"👦", label:"Tự lấy uống", correct:false},
+        {icon:"👧", label:"Bạn bè cho", correct:false},
+      ]},
+      { prompt: "🩺", promptLabel: "Đi khám bệnh", instruction: "Khi ốm nặng, bé cần đi đâu?", options: [
+        {icon:"🏥", label:"Đi bệnh viện", correct:true},
+        {icon:"🏫", label:"Đi học tiếp", correct:false},
+        {icon:"🎠", label:"Đi công viên", correct:false},
+      ]},
+    ]
+  },
+  {
+    id: "4-11", name: "Dọn phòng", icon: "🧹",
+    type: "sequence",
+    title: "Các bước dọn phòng",
+    steps: [
+      { icon: "🧸", label: "Gom đồ chơi lại" },
+      { icon: "📦", label: "Cất vào hộp/kệ" },
+      { icon: "🧹", label: "Quét nhà sạch" },
+      { icon: "🧽", label: "Lau bàn ghế" },
+      { icon: "🛏️", label: "Gấp chăn gối" },
+      { icon: "✨", label: "Phòng sạch đẹp!" },
+    ]
+  },
+  {
+    id: "4-12", name: "Đi công viên", icon: "🌳",
+    type: "identify",
+    questions: [
+      { prompt: "🌳", promptLabel: "Ở công viên", instruction: "Ở công viên, bé được làm gì?", options: [
+        {icon:"🏃", label:"Chạy chơi vui vẻ", correct:true},
+        {icon:"🗑️", label:"Vứt rác lung tung", correct:false},
+        {icon:"🌸", label:"Bẻ hoa cây", correct:false},
+      ]},
+      { prompt: "🛝", promptLabel: "Chơi cầu trượt", instruction: "Khi xếp hàng chờ chơi, bé nên?", options: [
+        {icon:"🧍", label:"Kiên nhẫn chờ", correct:true},
+        {icon:"😠", label:"Chen lên trước", correct:false},
+        {icon:"😭", label:"Khóc đòi chơi", correct:false},
+      ]},
+      { prompt: "🍬", promptLabel: "Ăn kẹo xong", instruction: "Ăn kẹo xong, bé bỏ giấy ở đâu?", options: [
+        {icon:"🗑️", label:"Vào thùng rác", correct:true},
+        {icon:"🌳", label:"Vứt dưới gốc cây", correct:false},
+        {icon:"🤷", label:"Vứt đâu cũng được", correct:false},
+      ]},
+      { prompt: "🐕", promptLabel: "Gặp chó lạ", instruction: "Gặp chó lạ ở công viên, bé nên?", options: [
+        {icon:"🧍", label:"Đứng yên, tránh xa", correct:true},
+        {icon:"🏃", label:"Chạy đến vuốt", correct:false},
+        {icon:"🍖", label:"Cho ăn đồ", correct:false},
+      ]},
+      { prompt: "🌅", promptLabel: "Trời tối rồi", instruction: "Khi trời sắp tối, bé nên?", options: [
+        {icon:"🏠", label:"Về nhà cùng bố mẹ", correct:true},
+        {icon:"🎮", label:"Ở lại chơi tiếp", correct:false},
+        {icon:"😴", label:"Ngủ ở công viên", correct:false},
+      ]},
+    ]
+  },
+  {
+    id: "4-13", name: "An toàn ở nhà", icon: "🏡",
+    type: "identify",
+    questions: [
+      { prompt: "🔥", promptLabel: "Bếp lửa!", instruction: "Bé có nên sờ vào bếp lửa không?", options: [
+        {icon:"🚫", label:"Không, nguy hiểm!", correct:true},
+        {icon:"👆", label:"Sờ thử xem", correct:false},
+        {icon:"🤷", label:"Không biết", correct:false},
+      ]},
+      { prompt: "🔌", promptLabel: "Ổ điện!", instruction: "Bé có nên chọc ổ điện không?", options: [
+        {icon:"🚫", label:"Không, nguy hiểm!", correct:true},
+        {icon:"👆", label:"Chọc thử xem", correct:false},
+        {icon:"🤷", label:"Không sao đâu", correct:false},
+      ]},
+      { prompt: "💊", promptLabel: "Lọ thuốc!", instruction: "Thấy lọ thuốc, bé nên làm gì?", options: [
+        {icon:"👩", label:"Gọi bố mẹ", correct:true},
+        {icon:"👅", label:"Nếm thử", correct:false},
+        {icon:"🎮", label:"Chơi với lọ", correct:false},
+      ]},
+      { prompt: "🔪", promptLabel: "Dao kéo!", instruction: "Bé có nên cầm dao kéo không?", options: [
+        {icon:"🚫", label:"Không, để người lớn", correct:true},
+        {icon:"✂️", label:"Cầm chơi được", correct:false},
+        {icon:"🤷", label:"Cầm cũng được", correct:false},
+      ]},
+      { prompt: "🚪", promptLabel: "Người lạ gõ cửa!", instruction: "Khi ở nhà một mình, có người lạ gõ cửa?", options: [
+        {icon:"🚫", label:"Không mở cửa", correct:true},
+        {icon:"🚪", label:"Mở cửa ngay", correct:false},
+        {icon:"🤷", label:"Hỏi họ muốn gì", correct:false},
+      ]},
     ]
   },
 ];
