@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Bé Học Vui">
+<meta name="theme-color" content="#4A90D9">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='100' fill='%234A90D9'/><text x='256' y='340' font-size='280' text-anchor='middle' fill='white'>🌟</text></svg>">
+<title>Bé Học Vui - Phần mềm dạy học cho trẻ tự kỷ</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #F0F4F8;
+    --card-bg: #FFFFFF;
+    --primary: #4A90D9;
+    --success: #27AE60;
+    --warning: #F2994A;
+    --danger: #EB5757;
+    --purple: #9B51E0;
+    --text: #2D3748;
+    --text-light: #718096;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --radius: 20px;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  body {
+    font-family: 'Quicksand', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    padding-bottom: var(--safe-bottom);
+  }
+
+  /* ===== INSTALL BANNER ===== */
+  .install-banner {
+    display: none;
+    background: linear-gradient(135deg, #27AE60, #2ECC71);
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .install-banner.show { display: flex; }
+  .install-banner button {
+    background: white; color: #27AE60;
+    border: none; padding: 8px 20px;
+    border-radius: 20px; font-weight: 700;
+    font-family: inherit; font-size: 14px;
+    cursor: pointer;
+  }
+  .install-banner .close-install {
+    background: transparent; color: white;
+    font-size: 20px; padding: 4px 8px;
+  }
+
+  /* ===== HEADER ===== */
+  .app-header {
+    background: linear-gradient(135deg, #4A90D9, #7B68EE);
+    padding: 12px 16px;
+    padding-top: calc(12px + var(--safe-top));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    box-shadow: 0 4px 15px rgba(74,144,217,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .app-header h1 { font-size: 22px; font-weight: 700; }
+  .app-header .subtitle { font-size: 11px; opacity: 0.85; }
+  .header-right { display: flex; align-items: center; gap: 8px; }
+  .star-count {
+    background: rgba(255,255,255,0.2);
+    padding: 6px 12px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .btn-home {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    min-height: 44px;
+    display: flex; align-items: center;
+  }
+  .btn-home:hover { background: rgba(255,255,255,0.35); }
+
+  /* ===== MAIN MENU ===== */
+  .main-menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 0 16px;
+  }
+  .menu-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 28px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+    border: 3px solid transparent;
+    position: relative;
+    overflow: hidden;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .menu-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  }
+  .menu-card:active { transform: scale(0.96); }
+  .menu-card .icon { font-size: 56px; margin-bottom: 12px; }
+  .menu-card h2 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+  .menu-card p { font-size: 12px; color: var(--text-light); line-height: 1.4; }
+  .menu-card.cat-1 { border-color: #4A90D9; }
+  .menu-card.cat-1:active { background: #EBF4FF; }
+  .menu-card.cat-2 { border-color: #27AE60; }
+  .menu-card.cat-2:active { background: #E8F8EF; }
+  .menu-card.cat-3 { border-color: #F2994A; }
+  .menu-card.cat-3:active { background: #FFF5EB; }
+  .menu-card.cat-4 { border-color: #9B51E0; }
+  .menu-card.cat-4:active { background: #F3E8FF; }
+  .menu-card .progress-bar {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 6px; background: #E2E8F0;
+  }
+  .menu-card .progress-fill {
+    height: 100%; border-radius: 0 3px 3px 0;
+    transition: width 0.5s;
+  }
+  .cat-1 .progress-fill { background: #4A90D9; }
+  .cat-2 .progress-fill { background: #27AE60; }
+  .cat-3 .progress-fill { background: #F2994A; }
+  .cat-4 .progress-fill { background: #9B51E0; }
+
+  /* ===== LESSON SCREEN ===== */
+  .lesson-screen { display: none; max-width: 960px; margin: 0 auto; padding: 16px; }
+  .lesson-screen.active { display: block; }
+
+  .sub-menu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .sub-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 20px 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: var(--shadow);
+    border: 2px solid transparent;
+    min-height: 44px;
+  }
+  .sub-card:active { transform: scale(0.95); border-color: var(--primary); }
+  .sub-card .icon { font-size: 40px; margin-bottom: 8px; }
+  .sub-card h3 { font-size: 15px; font-weight: 600; }
+
+  /* ===== GAME AREA ===== */
+  .game-area {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 24px 16px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    min-height: 380px;
+    position: relative;
+  }
+  .game-area h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+  .game-instruction {
+    font-size: 18px;
+    color: var(--primary);
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  .game-prompt {
+    font-size: 72px;
+    margin: 12px 0;
+    padding: 16px;
+    background: #F7FAFC;
+    border-radius: 16px;
+    display: inline-block;
+    min-width: 120px;
+  }
+  .game-prompt.text-prompt {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  /* Answer options */
+  .options-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .option-btn {
+    background: #F7FAFC;
+    border: 3px solid #E2E8F0;
+    border-radius: 16px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    min-width: 100px;
+    min-height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex: 1;
+    max-width: 160px;
+  }
+  .option-btn:active {
+    border-color: var(--primary);
+    background: #EBF4FF;
+    transform: scale(0.95);
+  }
+  .option-btn .opt-icon { font-size: 44px; }
+  .option-btn .opt-label { font-size: 15px; font-weight: 600; color: var(--text); }
+
+  .option-btn.correct {
+    border-color: var(--success) !important;
+    background: #E8F8EF !important;
+    animation: correctPulse 0.5s;
+  }
+  .option-btn.wrong {
+    border-color: var(--danger) !important;
+    background: #FDE8E8 !important;
+    animation: shake 0.4s;
+  }
+
+  @keyframes correctPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+  }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+  }
+
+  /* Color swatch option */
+  .option-btn.color-swatch {
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    min-width: unset; min-height: unset;
+    padding: 0; flex: unset;
+  }
+
+  /* ===== FEEDBACK OVERLAY ===== */
+  .feedback-overlay {
+    position: fixed; inset: 0;
+    display: none; align-items: center; justify-content: center;
+    z-index: 100; pointer-events: none;
+  }
+  .feedback-overlay.show { display: flex; }
+  .feedback-msg {
+    font-size: 48px;
+    animation: feedbackPop 1s ease forwards;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    background: rgba(255,255,255,0.9);
+    padding: 16px 32px;
+    border-radius: 20px;
+  }
+  @keyframes feedbackPop {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); opacity: 0; }
+  }
+
+  /* ===== REWARD ANIMATION ===== */
+  .reward-container {
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 200;
+    overflow: hidden;
+  }
+  .confetti {
+    position: absolute;
+    width: 10px; height: 10px;
+    border-radius: 2px;
+    animation: confettiFall 2s ease-out forwards;
+  }
+  @keyframes confettiFall {
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* ===== NAV BUTTONS ===== */
+  .nav-row {
+    display: flex; justify-content: center; gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  .btn-nav {
+    background: var(--primary);
+    color: white; border: none;
+    padding: 14px 24px;
+    border-radius: 30px;
+    font-size: 15px; font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 4px 12px rgba(74,144,217,0.3);
+    min-height: 48px;
+  }
+  .btn-nav:active { transform: scale(0.95); }
+  .btn-nav.green { background: var(--success); box-shadow: 0 4px 12px rgba(39,174,96,0.3); }
+  .btn-nav.orange { background: var(--warning); box-shadow: 0 4px 12px rgba(242,153,74,0.3); }
+
+  /* ===== SCORE PANEL ===== */
+  .score-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 14px;
+    padding: 10px 16px;
+    background: #F7FAFC;
+    border-radius: 14px;
+  }
+  .score-item { font-size: 15px; font-weight: 600; }
+  .score-item span { font-weight: 700; font-size: 18px; }
+
+  /* ===== VISUAL SCHEDULE ===== */
+  .schedule-dots {
+    display: flex; justify-content: center; gap: 6px; margin-bottom: 14px;
+  }
+  .schedule-dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: #E2E8F0;
+    transition: 0.3s;
+  }
+  .schedule-dot.done { background: var(--success); }
+  .schedule-dot.current { background: var(--primary); transform: scale(1.3); }
+
+  /* ===== MATCHING GAME ===== */
+  .match-container {
+    display: flex; justify-content: center; gap: 24px;
+    margin-top: 16px;
+  }
+  .match-column { display: flex; flex-direction: column; gap: 10px; flex: 1; max-width: 200px; }
+  .match-item {
+    background: #F7FAFC;
+    border: 3px solid #E2E8F0;
+    border-radius: 14px;
+    padding: 14px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+    text-align: center;
+    min-height: 48px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .match-item:active { border-color: var(--primary); background: #EBF4FF; }
+  .match-item.selected { border-color: var(--primary); background: #DBEAFE; box-shadow: 0 0 0 3px rgba(74,144,217,0.2); }
+  .match-item.matched { border-color: var(--success); background: #E8F8EF; opacity: 0.7; pointer-events: none; }
+  .match-item .opt-icon { font-size: 32px; }
+
+  /* ===== SEQUENCE GAME ===== */
+  .sequence-slots {
+    display: flex; justify-content: center; gap: 8px;
+    margin: 14px 0;
+    flex-wrap: wrap;
+  }
+  .seq-slot {
+    width: 60px; height: 60px;
+    background: #F7FAFC;
+    border: 3px dashed #CBD5E0;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 600; color: #A0AEC0;
+  }
+  .seq-slot.filled {
+    border-style: solid;
+    border-color: var(--success);
+    background: #E8F8EF;
+    font-size: 28px;
+    color: var(--text);
+  }
+  .seq-choices {
+    display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
+    margin-top: 14px;
+  }
+  .seq-choice {
+    background: #F7FAFC;
+    border: 3px solid #E2E8F0;
+    border-radius: 14px;
+    padding: 12px;
+    font-size: 28px;
+    cursor: pointer;
+    transition: 0.2s;
+    min-height: 48px;
+    text-align: center;
+  }
+  .seq-choice:active { border-color: var(--primary); transform: scale(0.95); }
+  .seq-choice .seq-label { font-size: 12px; margin-top: 2px; }
+  .seq-choice.used { opacity: 0.3; pointer-events: none; }
+
+  /* ===== EMOTION CARDS ===== */
+  .emotion-display { font-size: 100px; margin: 12px 0; }
+
+  /* ===== COMPLETION SCREEN ===== */
+  .completion-screen { text-align: center; padding: 24px 8px; }
+  .completion-screen .big-icon { font-size: 80px; margin-bottom: 12px; }
+  .completion-screen h2 { font-size: 26px; color: var(--success); margin-bottom: 10px; }
+  .completion-screen p { font-size: 18px; color: var(--text-light); margin-bottom: 20px; }
+
+  /* ===== TEACHER PANEL ===== */
+  .teacher-bar {
+    background: #2D3748;
+    color: white;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+  }
+  .teacher-bar a {
+    color: #90CDF4; cursor: pointer;
+    text-decoration: underline; font-weight: 600;
+  }
+  .teacher-panel {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 500;
+    align-items: center; justify-content: center;
+    padding: 16px;
+  }
+  .teacher-panel.show { display: flex; }
+  .teacher-content {
+    background: white;
+    border-radius: 20px;
+    padding: 24px 16px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .teacher-content h2 { margin-bottom: 16px; font-size: 20px; }
+  .teacher-content table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  .teacher-content th, .teacher-content td {
+    padding: 8px 10px;
+    text-align: left;
+    border-bottom: 1px solid #E2E8F0;
+    font-size: 13px;
+  }
+  .teacher-content th { background: #F7FAFC; font-weight: 700; }
+  .btn-close-panel {
+    background: var(--danger);
+    color: white; border: none;
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 12px;
+    min-height: 48px;
+  }
+  .btn-reset {
+    background: var(--warning);
+    color: white; border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 10px;
+    min-height: 44px;
+  }
+
+  .sound-toggle {
+    background: rgba(255,255,255,0.2);
+    border: none; color: white;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* Transition helper */
+  .fade-in { animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ===== DESKTOP ENHANCEMENTS ===== */
+  @media (min-width: 768px) {
+    .app-header { padding: 16px 32px; }
+    .app-header h1 { font-size: 28px; }
+    .main-menu { gap: 24px; margin: 40px auto; padding: 0 32px; }
+    .menu-card { padding: 36px 24px; min-height: 220px; }
+    .menu-card .icon { font-size: 72px; }
+    .menu-card h2 { font-size: 22px; }
+    .menu-card p { font-size: 14px; }
+    .game-area { padding: 32px; }
+    .game-prompt { font-size: 80px; }
+    .option-btn { min-width: 140px; min-height: 120px; padding: 20px; }
+    .option-btn .opt-icon { font-size: 52px; }
+    .option-btn .opt-label { font-size: 18px; }
+    .option-btn.color-swatch { width: 110px; height: 110px; }
+    .match-container { gap: 60px; }
+    .match-column { max-width: 240px; }
+    .match-item { padding: 16px 24px; font-size: 20px; }
+    .seq-slot { width: 80px; height: 80px; }
+    .seq-slot.filled { font-size: 36px; }
+    .seq-choice { font-size: 36px; padding: 16px; }
+    .feedback-msg { font-size: 64px; }
+    .lesson-screen { padding: 32px; }
+    .sub-menu { gap: 20px; }
+    .sub-card { padding: 24px 16px; }
+    .sub-card .icon { font-size: 48px; }
+    .sub-card h3 { font-size: 17px; }
+  }
+
+  /* ===== VERY SMALL SCREENS ===== */
+  @media (max-width: 380px) {
+    .main-menu { grid-template-columns: 1fr; gap: 12px; }
+    .sub-menu { grid-template-columns: repeat(2, 1fr); }
+    .match-container { flex-direction: column; gap: 16px; align-items: center; }
+    .match-column { max-width: 100%; width: 100%; }
+    .sequence-slots { gap: 6px; }
+    .seq-slot { width: 50px; height: 50px; }
+    .option-btn { min-width: 80px; }
+    .app-header h1 { font-size: 18px; }
+  }
+
+  @media (max-width: 500px) {
+    .sub-menu { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- INSTALL BANNER -->
+<div class="install-banner" id="installBanner">
+  <span>Cài đặt ứng dụng lên điện thoại</span>
+  <button onclick="installApp()">Cài đặt</button>
+  <button class="close-install" onclick="closeInstallBanner()">✕</button>
+</div>
+
+<!-- TEACHER BAR -->
+<div class="teacher-bar">
+  <span>Giáo viên / Phụ huynh</span>
+  <a onclick="showTeacherPanel()">📊 Tiến trình</a>
+</div>
+
+<!-- HEADER -->
+<div class="app-header">
+  <div>
+    <h1>Bé Học Vui</h1>
+    <div class="subtitle">Dạy học cho trẻ tự kỷ (4-7 tuổi)</div>
+  </div>
+  <div class="header-right">
+    <div class="star-count" id="starCount">⭐ 0</div>
+    <button class="btn-home" onclick="goHome()">🏠</button>
+    <button class="sound-toggle" onclick="toggleSound()" id="soundBtn" title="Bật/tắt âm thanh">🔊</button>
+  </div>
+</div>
+
+<!-- FEEDBACK OVERLAY -->
+<div class="feedback-overlay" id="feedbackOverlay">
+  <div class="feedback-msg" id="feedbackMsg"></div>
+</div>
+
+<!-- REWARD CONTAINER -->
+<div class="reward-container" id="rewardContainer"></div>
+
+<!-- ==================== MAIN MENU ==================== -->
+<div id="mainMenu" class="main-menu fade-in">
+  <div class="menu-card cat-1" onclick="openCategory(1)">
+    <div class="icon">🎨</div>
+    <h2>Nhận Biết</h2>
+    <p>Đồ vật, màu sắc, hình dạng</p>
+    <div class="progress-bar"><div class="progress-fill" id="prog1" style="width:0%"></div></div>
+  </div>
+  <div class="menu-card cat-2" onclick="openCategory(2)">
+    <div class="icon">😊</div>
+    <h2>Giao Tiếp</h2>
+    <p>Cảm xúc, chào hỏi, tình huống</p>
+    <div class="progress-bar"><div class="progress-fill" id="prog2" style="width:0%"></div></div>
+  </div>
+  <div class="menu-card cat-3" onclick="openCategory(3)">
+    <div class="icon">📖</div>
+    <h2>Ngôn Ngữ</h2>
+    <p>Từ vựng, ghép từ, đọc từ</p>
+    <div class="progress-bar"><div class="progress-fill" id="prog3" style="width:0%"></div></div>
+  </div>
+  <div class="menu-card cat-4" onclick="openCategory(4)">
+    <div class="icon">🌅</div>
+    <h2>Sinh Hoạt</h2>
+    <p>Thói quen, vệ sinh, ăn uống</p>
+    <div class="progress-bar"><div class="progress-fill" id="prog4" style="width:0%"></div></div>
+  </div>
+</div>
+
+<!-- ==================== LESSON SCREEN ==================== -->
+<div id="lessonScreen" class="lesson-screen"></div>
+
+<!-- ==================== TEACHER PANEL ==================== -->
+<div class="teacher-panel" id="teacherPanel">
+  <div class="teacher-content" id="teacherContent"></div>
+</div>
+
+<script>
+// ===================================================================
+// DATA & STATE
+// ===================================================================
+const APP = {
+  stars: 0,
+  soundOn: true,
+  currentCat: 0,
+  currentLesson: null,
+  currentQ: 0,
+  scores: {},
+  matchState: null,
+  seqState: null,
+};
+
+// ---------- CATEGORY 1: NHẬN BIẾT ----------
+const CAT1_LESSONS = [
+  {
+    id: "1-1", name: "Màu sắc", icon: "🌈",
+    type: "identify",
+    questions: [
+      { prompt: "🔴", promptLabel: "Màu ĐỎ", instruction: "Chọn màu ĐỎ", options: [
+        {icon:"", label:"Đỏ", color:"#E53E3E", correct:true},
+        {icon:"", label:"Xanh", color:"#3182CE", correct:false},
+        {icon:"", label:"Vàng", color:"#ECC94B", correct:false},
+      ]},
+      { prompt: "🔵", promptLabel: "Màu XANH DƯƠNG", instruction: "Chọn màu XANH DƯƠNG", options: [
+        {icon:"", label:"Cam", color:"#ED8936", correct:false},
+        {icon:"", label:"Xanh dương", color:"#3182CE", correct:true},
+        {icon:"", label:"Tím", color:"#9B51E0", correct:false},
+      ]},
+      { prompt: "🟡", promptLabel: "Màu VÀNG", instruction: "Chọn màu VÀNG", options: [
+        {icon:"", label:"Vàng", color:"#ECC94B", correct:true},
+        {icon:"", label:"Xanh lá", color:"#38A169", correct:false},
+        {icon:"", label:"Hồng", color:"#ED64A6", correct:false},
+      ]},
+      { prompt: "🟢", promptLabel: "Màu XANH LÁ", instruction: "Chọn màu XANH LÁ", options: [
+        {icon:"", label:"Đỏ", color:"#E53E3E", correct:false},
+        {icon:"", label:"Xanh lá", color:"#38A169", correct:true},
+        {icon:"", label:"Cam", color:"#ED8936", correct:false},
+      ]},
+      { prompt: "🟠", promptLabel: "Màu CAM", instruction: "Chọn màu CAM", options: [
+        {icon:"", label:"Tím", color:"#9B51E0", correct:false},
+        {icon:"", label:"Cam", color:"#ED8936", correct:true},
+        {icon:"", label:"Xanh dương", color:"#3182CE", correct:false},
+      ]},
+    ]
+  },
+  {
+    id: "1-2", name: "Đồ vật", icon: "🧸",
+    type: "identify",
+    questions: [
+      { prompt: "🍎", instruction: "Đây là gì?", options: [
+        {icon:"🍎", label:"Quả táo", correct:true},
+        {icon:"🍌", label:"Quả chuối", correct:false},
+        {icon:"🚗", label:"Xe ô tô", correct:false},
+      ]},
+      { prompt: "🚗", instruction: "Đây là gì?", options: [
+        {icon:"✈️", label:"Máy bay", correct:false},
+        {icon:"🚗", label:"Xe ô tô", correct:true},
+        {icon:"🐱", label:"Con mèo", correct:false},
+      ]},
+      { prompt: "🐶", instruction: "Đây là gì?", options: [
+        {icon:"🐶", label:"Con chó", correct:true},
+        {icon:"🐟", label:"Con cá", correct:false},
+        {icon:"🌳", label:"Cái cây", correct:false},
+      ]},
+      { prompt: "📚", instruction: "Đây là gì?", options: [
+        {icon:"🎒", label:"Cặp sách", correct:false},
+        {icon:"📚", label:"Quyển sách", correct:true},
+        {icon:"🖍️", label:"Bút màu", correct:false},
+      ]},
+      { prompt: "🌸", instruction: "Đây là gì?", options: [
+        {icon:"🌸", label:"Bông hoa", correct:true},
+        {icon:"⭐", label:"Ngôi sao", correct:false},
+        {icon:"🍕", label:"Bánh pizza", correct:false},
+      ]},
+    ]
+  },
+  {
+    id: "1-3", name: "Hình dạng", icon: "🔷",
+    type: "identify",
+    questions: [
+      { prompt: "⬛", promptLabel: "HÌNH VUÔNG", instruction: "Chọn hình VUÔNG", options: [
+        {icon:"⬛", label:"Hình vuông", correct:true},
+        {icon:"⚫", label:"Hình tròn", correct:false},
+        {icon:"🔺", label:"Tam giác", correct:false},
+      ]},
+      { prompt: "⚫", promptLabel: "HÌNH TRÒN", instruction: "Chọn hình TRÒN", options: [
+        {icon:"⬛", label:"Hình vuông", correct:false},
+        {icon:"⚫", label:"Hình tròn", correct:true},
+        {icon:"⭐", label:"Ngôi sao", correct:false},
+      ]},
+      { prompt: "🔺", promptLabel: "HÌNH TAM GIÁC", instruction: "Chọn hình TAM GIÁC", options: [
+        {icon:"🔺", label:"Tam giác", correct:true},
+        {icon:"⬛", label:"Hình vuông", correct:false},
+        {icon:"💎", label:"Hình thoi", correct:false},
+      ]},
+      { prompt: "⭐", promptLabel: "HÌNH NGÔI SAO", instruction: "Chọn hình NGÔI SAO", options: [
+        {icon:"⚫", label:"Hình tròn", correct:false},
+        {icon:"🔺", label:"Tam giác", correct:false},
+        {icon:"⭐", label:"Ngôi sao", correct:true},
+      ]},
+    ]
+  },
+];
+
+// ---------- CATEGORY 2: GIAO TIẾP XÃ HỘI ----------
+const CAT2_LESSONS = [
+  {
+    id: "2-1", name: "Nhận biết cảm xúc", icon: "😊",
+    type: "identify",
+    questions: [
+      { prompt: "😊", instruction: "Bạn này cảm thấy thế nào?", options: [
+        {icon:"😊", label:"Vui vẻ", correct:true},
+        {icon:"😢", label:"Buồn", correct:false},
+        {icon:"😠", label:"Tức giận", correct:false},
+      ]},
+      { prompt: "😢", instruction: "Bạn này cảm thấy thế nào?", options: [
+        {icon:"😊", label:"Vui vẻ", correct:false},
+        {icon:"😢", label:"Buồn", correct:true},
+        {icon:"😲", label:"Ngạc nhiên", correct:false},
+      ]},
+      { prompt: "😠", instruction: "Bạn này cảm thấy thế nào?", options: [
+        {icon:"😠", label:"Tức giận", correct:true},
+        {icon:"😊", label:"Vui vẻ", correct:false},
+        {icon:"😴", label:"Buồn ngủ", correct:false},
+      ]},
+      { prompt: "😲", instruction: "Bạn này cảm thấy thế nào?", options: [
+        {icon:"😢", label:"Buồn", correct:false},
+        {icon:"😲", label:"Ngạc nhiên", correct:true},
+        {icon:"😊", label:"Vui vẻ", correct:false},
+      ]},
+      { prompt: "😨", instruction: "Bạn này cảm thấy thế nào?", options: [
+        {icon:"😨", label:"Sợ hãi", correct:true},
+        {icon:"😠", label:"Tức giận", correct:false},
+        {icon:"😢", label:"Buồn", correct:false},
+      ]},
+    ]
+  },
+  {
+    id: "2-2", name: "Chào hỏi", icon: "👋",
+    type: "matching",
+    pairs: [
+      { left: "👋 Gặp bạn", right: "Xin chào!" },
+      { left: "😊 Cảm ơn ai", right: "Cảm ơn!" },
+      { left: "😥 Làm sai", right: "Xin lỗi!" },
+      { left: "🖐️ Tạm biệt", right: "Tạm biệt!" },
+    ]
+  },
+  {
+    id: "2-3", name: "Tình huống", icon: "🤝",
+    type: "identify",
+    questions: [
+      { prompt: "🎁", promptLabel: "Được tặng quà", instruction: "Bạn nên nói gì?", options: [
+        {icon:"😊", label:"Cảm ơn!", correct:true},
+        {icon:"😠", label:"Đi đi!", correct:false},
+        {icon:"😶", label:"Không nói", correct:false},
+      ]},
+      { prompt: "😢", promptLabel: "Thấy bạn khóc", instruction: "Bạn nên làm gì?", options: [
+        {icon:"🤗", label:"Hỏi thăm", correct:true},
+        {icon:"😂", label:"Cười bạn", correct:false},
+        {icon:"🚶", label:"Bỏ đi", correct:false},
+      ]},
+      { prompt: "🚪", promptLabel: "Muốn vào phòng", instruction: "Bạn nên làm gì?", options: [
+        {icon:"🤜", label:"Gõ cửa", correct:true},
+        {icon:"💨", label:"Xông vào", correct:false},
+        {icon:"📢", label:"Hét to", correct:false},
+      ]},
+      { prompt: "🍽️", promptLabel: "Giờ ăn cơm", instruction: "Bạn nên nói gì?", options: [
+        {icon:"🙏", label:"Mời ăn cơm", correct:true},
+        {icon:"😤", label:"Ăn trước", correct:false},
+        {icon:"📱", label:"Chơi điện thoại", correct:false},
+      ]},
+    ]
+  },
+];
+
+// ---------- CATEGORY 3: NGÔN NGỮ ----------
+const CAT3_LESSONS = [
+  {
+    id: "3-1", name: "Động vật", icon: "🐾",
+    type: "identify",
+    questions: [
+      { prompt: "🐱", instruction: "Con vật này tên gì?", options: [
+        {icon:"🐱", label:"Con mèo", correct:true},
+        {icon:"🐶", label:"Con chó", correct:false},
+        {icon:"🐰", label:"Con thỏ", correct:false},
+      ]},
+      { prompt: "🐘", instruction: "Con vật này tên gì?", options: [
+        {icon:"🐘", label:"Con voi", correct:true},
+        {icon:"🦁", label:"Sư tử", correct:false},
+        {icon:"🐻", label:"Con gấu", correct:false},
+      ]},
+      { prompt: "🐟", instruction: "Con vật này tên gì?", options: [
+        {icon:"🐦", label:"Con chim", correct:false},
+        {icon:"🐟", label:"Con cá", correct:true},
+        {icon:"🐢", label:"Con rùa", correct:false},
+      ]},
+      { prompt: "🦋", instruction: "Con vật này tên gì?", options: [
+        {icon:"🐝", label:"Con ong", correct:false},
+        {icon:"🦋", label:"Con bướm", correct:true},
+        {icon:"🐛", label:"Con sâu", correct:false},
+      ]},
+      { prompt: "🐸", instruction: "Con vật này tên gì?", options: [
+        {icon:"🐸", label:"Con ếch", correct:true},
+        {icon:"🐍", label:"Con rắn", correct:false},
+        {icon:"🦎", label:"Thằn lằn", correct:false},
+      ]},
+    ]
+  },
+  {
+    id: "3-2", name: "Ghép từ", icon: "🔤",
+    type: "matching",
+    pairs: [
+      { left: "🍎", right: "Quả táo" },
+      { left: "🌸", right: "Bông hoa" },
+      { left: "🐶", right: "Con chó" },
+      { left: "☀️", right: "Mặt trời" },
+      { left: "🌧️", right: "Mưa" },
+    ]
+  },
+  {
+    id: "3-3", name: "Trái cây", icon: "🍉",
+    type: "identify",
+    questions: [
+      { prompt: "🍌", instruction: "Đây là trái gì?", options: [
+        {icon:"🍌", label:"Quả chuối", correct:true},
+        {icon:"🍊", label:"Quả cam", correct:false},
+        {icon:"🍇", label:"Quả nho", correct:false},
+      ]},
+      { prompt: "🍊", instruction: "Đây là trái gì?", options: [
+        {icon:"🍋", label:"Quả chanh", correct:false},
+        {icon:"🍊", label:"Quả cam", correct:true},
+        {icon:"🍎", label:"Quả táo", correct:false},
+      ]},
+      { prompt: "🍇", instruction: "Đây là trái gì?", options: [
+        {icon:"🍇", label:"Quả nho", correct:true},
+        {icon:"🫐", label:"Việt quất", correct:false},
+        {icon:"🍒", label:"Cherry", correct:false},
+      ]},
+      { prompt: "🍉", instruction: "Đây là trái gì?", options: [
+        {icon:"🍈", label:"Dưa lưới", correct:false},
+        {icon:"🍉", label:"Dưa hấu", correct:true},
+        {icon:"🥥", label:"Quả dừa", correct:false},
+      ]},
+    ]
+  },
+];
+
+// ---------- CATEGORY 4: SINH HOẠT ----------
+const CAT4_LESSONS = [
+  {
+    id: "4-1", name: "Buổi sáng", icon: "🌅",
+    type: "sequence",
+    title: "Sắp xếp thứ tự buổi sáng",
+    steps: [
+      { icon: "⏰", label: "Thức dậy" },
+      { icon: "🪥", label: "Đánh răng" },
+      { icon: "🧼", label: "Rửa mặt" },
+      { icon: "👕", label: "Mặc đồ" },
+      { icon: "🍚", label: "Ăn sáng" },
+    ]
+  },
+  {
+    id: "4-2", name: "Rửa tay", icon: "🧼",
+    type: "sequence",
+    title: "Sắp xếp thứ tự rửa tay",
+    steps: [
+      { icon: "🚰", label: "Mở nước" },
+      { icon: "💧", label: "Ướt tay" },
+      { icon: "🧴", label: "Xà phòng" },
+      { icon: "👐", label: "Xoa tay" },
+      { icon: "🫧", label: "Rửa sạch" },
+    ]
+  },
+  {
+    id: "4-3", name: "Trước khi ngủ", icon: "🌙",
+    type: "sequence",
+    title: "Sắp xếp thứ tự trước khi ngủ",
+    steps: [
+      { icon: "🛁", label: "Tắm rửa" },
+      { icon: "👕", label: "Đồ ngủ" },
+      { icon: "🪥", label: "Đánh răng" },
+      { icon: "📖", label: "Đọc sách" },
+      { icon: "😴", label: "Đi ngủ" },
+    ]
+  },
+];
+
+const ALL_CATS = [null, CAT1_LESSONS, CAT2_LESSONS, CAT3_LESSONS, CAT4_LESSONS];
+const CAT_COLORS = [null, "#4A90D9", "#27AE60", "#F2994A", "#9B51E0"];
+const CAT_NAMES = [null, "Nhận Biết", "Giao Tiếp Xã Hội", "Ngôn Ngữ & Từ Vựng", "Sinh Hoạt Hàng Ngày"];
+
+// ===================================================================
+// AUDIO
+// ===================================================================
+let audioCtx;
+function getAudioCtx() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  return audioCtx;
+}
+function playTone(freq, duration, type='sine') {
+  if (!APP.soundOn) return;
+  try {
+    const ctx = getAudioCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = type;
+    osc.frequency.value = freq;
+    gain.gain.setValueAtTime(0.25, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.start(); osc.stop(ctx.currentTime + duration);
+  } catch(e) {}
+}
+function playCorrect() { playTone(523,0.12); setTimeout(()=>playTone(659,0.12),80); setTimeout(()=>playTone(784,0.2),160); }
+function playWrong() { playTone(200, 0.25, 'square'); }
+function playComplete() { [523,659,784,1047].forEach((f,i)=>setTimeout(()=>playTone(f,0.18),i*100)); }
+function playClick() { playTone(440, 0.04); }
+function toggleSound() {
+  APP.soundOn = !APP.soundOn;
+  document.getElementById('soundBtn').textContent = APP.soundOn ? '🔊' : '🔇';
+}
+
+// ===================================================================
+// NAVIGATION
+// ===================================================================
+function goHome() {
+  playClick();
+  document.getElementById('mainMenu').style.display = 'grid';
+  document.getElementById('lessonScreen').style.display = 'none';
+  document.getElementById('lessonScreen').classList.remove('active');
+  APP.currentCat = 0; APP.currentLesson = null;
+  updateProgress();
+  window.scrollTo(0, 0);
+}
+
+function openCategory(catNum) {
+  playClick();
+  APP.currentCat = catNum;
+  document.getElementById('mainMenu').style.display = 'none';
+  const ls = document.getElementById('lessonScreen');
+  ls.style.display = 'block'; ls.classList.add('active');
+  renderSubMenu(catNum);
+  window.scrollTo(0, 0);
+}
+
+function renderSubMenu(catNum) {
+  const lessons = ALL_CATS[catNum];
+  const color = CAT_COLORS[catNum];
+  let html = `<h2 style="text-align:center; font-size:24px; margin-bottom:16px; color:${color}">${CAT_NAMES[catNum]}</h2>`;
+  html += `<div class="sub-menu">`;
+  lessons.forEach((l, i) => {
+    const score = APP.scores[l.id];
+    const done = score && score.correct === score.total && score.total > 0;
+    html += `<div class="sub-card ${done ? 'completed-step' : ''}" onclick="startLesson(${catNum}, ${i})" style="${done ? 'border-color:'+color : ''}">
+      <div class="icon">${l.icon}</div>
+      <h3>${l.name}</h3>
+      ${done ? '<div style="color:#27AE60; font-weight:600; margin-top:4px; font-size:13px">✅ Xong</div>' : ''}
+    </div>`;
+  });
+  html += `</div>`;
+  html += `<div style="text-align:center"><button class="btn-nav" onclick="goHome()" style="font-size:14px; padding:10px 20px">🏠 Trang chủ</button></div>`;
+  document.getElementById('lessonScreen').innerHTML = html;
+}
+
+// ===================================================================
+// LESSON ENGINE
+// ===================================================================
+function startLesson(catNum, lessonIdx) {
+  playClick();
+  const lesson = ALL_CATS[catNum][lessonIdx];
+  APP.currentLesson = lesson;
+  APP.currentQ = 0;
+  APP.scores[lesson.id] = { correct: 0, total: 0 };
+  if (lesson.type === 'identify') renderIdentifyQuestion();
+  else if (lesson.type === 'matching') renderMatchingGame();
+  else if (lesson.type === 'sequence') renderSequenceGame();
+  window.scrollTo(0, 0);
+}
+
+// ---------- IDENTIFY ----------
+function renderIdentifyQuestion() {
+  const lesson = APP.currentLesson;
+  const q = lesson.questions[APP.currentQ];
+  const total = lesson.questions.length;
+  let html = `<div class="game-area fade-in">`;
+  html += `<div class="schedule-dots">`;
+  for (let i = 0; i < total; i++) {
+    html += `<div class="schedule-dot ${i < APP.currentQ ? 'done' : i === APP.currentQ ? 'current' : ''}"></div>`;
+  }
+  html += `</div>`;
+  html += `<div class="score-panel">
+    <div class="score-item">Câu <span>${APP.currentQ+1}</span>/${total}</div>
+    <div class="score-item">Đúng: <span style="color:#27AE60">${APP.scores[lesson.id].correct}</span></div>
+  </div>`;
+  html += `<div class="game-instruction">${q.instruction}</div>`;
+  if (q.promptLabel) {
+    html += `<div class="game-prompt">${q.prompt}</div>`;
+    html += `<div style="font-size:18px; font-weight:700; margin-bottom:10px">${q.promptLabel}</div>`;
+  } else {
+    html += `<div class="game-prompt">${q.prompt}</div>`;
+  }
+  html += `<div class="options-grid">`;
+  q.options.forEach((opt, i) => {
+    if (opt.color) {
+      html += `<button class="option-btn color-swatch" style="background:${opt.color}" onclick="answerIdentify(${i})" id="opt${i}">
+        <div class="opt-label" style="color:white; text-shadow:0 1px 3px rgba(0,0,0,0.4)">${opt.label}</div>
+      </button>`;
+    } else {
+      html += `<button class="option-btn" onclick="answerIdentify(${i})" id="opt${i}">
+        <div class="opt-icon">${opt.icon}</div>
+        <div class="opt-label">${opt.label}</div>
+      </button>`;
+    }
+  });
+  html += `</div></div>`;
+  document.getElementById('lessonScreen').innerHTML = html;
+}
+
+function answerIdentify(idx) {
+  const lesson = APP.currentLesson;
+  const q = lesson.questions[APP.currentQ];
+  const opt = q.options[idx];
+  document.querySelectorAll('.option-btn').forEach(b => b.style.pointerEvents = 'none');
+  const btn = document.getElementById('opt' + idx);
+  if (opt.correct) {
+    btn.classList.add('correct');
+    APP.scores[lesson.id].correct++;
+    APP.scores[lesson.id].total++;
+    addStars(1); playCorrect(); showFeedback('🎉 Giỏi lắm!');
+  } else {
+    btn.classList.add('wrong');
+    APP.scores[lesson.id].total++;
+    playWrong(); showFeedback('😊 Thử lại nhé!');
+    q.options.forEach((o, i) => { if (o.correct) document.getElementById('opt'+i).classList.add('correct'); });
+  }
+  setTimeout(() => {
+    APP.currentQ++;
+    if (APP.currentQ < lesson.questions.length) renderIdentifyQuestion();
+    else renderCompletion();
+  }, 1400);
+}
+
+// ---------- MATCHING ----------
+function renderMatchingGame() {
+  const lesson = APP.currentLesson;
+  const pairs = lesson.pairs;
+  APP.matchState = { selectedLeft: null, selectedRight: null, matched: new Set(), totalPairs: pairs.length };
+  const rightOrder = pairs.map((p,i) => i).sort(() => Math.random() - 0.5);
+  let html = `<div class="game-area fade-in">`;
+  html += `<h2>${lesson.name}</h2>`;
+  html += `<div class="game-instruction">Nối các cặp phù hợp</div>`;
+  html += `<div class="score-panel"><div class="score-item">Đã nối: <span id="matchCount">0</span>/${pairs.length}</div></div>`;
+  html += `<div class="match-container">`;
+  html += `<div class="match-column" id="matchLeft">`;
+  pairs.forEach((p, i) => {
+    html += `<div class="match-item" data-idx="${i}" data-side="left" onclick="selectMatch(this,'left',${i})"><span style="font-size:20px">${p.left}</span></div>`;
+  });
+  html += `</div><div class="match-column" id="matchRight">`;
+  rightOrder.forEach(i => {
+    html += `<div class="match-item" data-idx="${i}" data-side="right" onclick="selectMatch(this,'right',${i})"><span style="font-size:16px; font-weight:600">${pairs[i].right}</span></div>`;
+  });
+  html += `</div></div></div>`;
+  document.getElementById('lessonScreen').innerHTML = html;
+  APP.scores[lesson.id] = { correct: 0, total: pairs.length };
+}
+
+function selectMatch(el, side, idx) {
+  if (APP.matchState.matched.has(idx) && side === 'left') return;
+  playClick();
+  if (side === 'left') {
+    document.querySelectorAll('#matchLeft .match-item').forEach(e => e.classList.remove('selected'));
+    el.classList.add('selected'); APP.matchState.selectedLeft = idx;
+  } else {
+    document.querySelectorAll('#matchRight .match-item').forEach(e => e.classList.remove('selected'));
+    el.classList.add('selected'); APP.matchState.selectedRight = idx;
+  }
+  if (APP.matchState.selectedLeft !== null && APP.matchState.selectedRight !== null) {
+    const lIdx = APP.matchState.selectedLeft, rIdx = APP.matchState.selectedRight;
+    if (lIdx === rIdx) {
+      APP.matchState.matched.add(lIdx);
+      APP.scores[APP.currentLesson.id].correct++;
+      addStars(1); playCorrect(); showFeedback('🎉 Đúng rồi!');
+      document.querySelectorAll(`#matchLeft .match-item[data-idx="${lIdx}"]`).forEach(e => e.classList.add('matched'));
+      document.querySelectorAll(`#matchRight .match-item[data-idx="${rIdx}"]`).forEach(e => e.classList.add('matched'));
+      document.getElementById('matchCount').textContent = APP.matchState.matched.size;
+      if (APP.matchState.matched.size === APP.matchState.totalPairs) setTimeout(() => renderCompletion(), 800);
+    } else {
+      playWrong(); showFeedback('😊 Thử lại!');
+      setTimeout(() => document.querySelectorAll('.match-item').forEach(e => e.classList.remove('selected')), 500);
+    }
+    APP.matchState.selectedLeft = null; APP.matchState.selectedRight = null;
+  }
+}
+
+// ---------- SEQUENCE ----------
+function renderSequenceGame() {
+  const lesson = APP.currentLesson;
+  APP.seqState = { placed: [], remaining: lesson.steps.map((s,i) => i).sort(() => Math.random() - 0.5) };
+  APP.scores[lesson.id] = { correct: 0, total: lesson.steps.length };
+  renderSequenceUI();
+}
+
+function renderSequenceUI() {
+  const lesson = APP.currentLesson;
+  const steps = lesson.steps;
+  const state = APP.seqState;
+  let html = `<div class="game-area fade-in">`;
+  html += `<h2>${lesson.title}</h2>`;
+  html += `<div class="game-instruction">Chọn bước tiếp theo</div>`;
+  html += `<div class="sequence-slots">`;
+  steps.forEach((s, i) => {
+    if (i < state.placed.length) html += `<div class="seq-slot filled">${steps[state.placed[i]].icon}</div>`;
+    else if (i === state.placed.length) html += `<div class="seq-slot" style="border-color:var(--primary); font-size:16px">?</div>`;
+    else html += `<div class="seq-slot">${i+1}</div>`;
+  });
+  html += `</div>`;
+  if (state.placed.length < steps.length) {
+    html += `<div style="font-size:15px; color:var(--text-light); margin:10px 0">Bước ${state.placed.length+1}: Chọn đúng</div>`;
+  }
+  html += `<div class="seq-choices">`;
+  state.remaining.forEach(idx => {
+    const used = state.placed.includes(idx);
+    html += `<div class="seq-choice ${used ? 'used' : ''}" onclick="${used ? '' : 'placeSequence('+idx+')'}">
+      ${steps[idx].icon}<div class="seq-label">${steps[idx].label}</div>
+    </div>`;
+  });
+  html += `</div></div>`;
+  document.getElementById('lessonScreen').innerHTML = html;
+}
+
+function placeSequence(idx) {
+  const lesson = APP.currentLesson;
+  const state = APP.seqState;
+  if (idx === state.placed.length) {
+    state.placed.push(idx);
+    APP.scores[lesson.id].correct++;
+    addStars(1); playCorrect(); showFeedback('🎉 Đúng!');
+    if (state.placed.length === lesson.steps.length) setTimeout(() => renderCompletion(), 800);
+    else setTimeout(() => renderSequenceUI(), 500);
+  } else {
+    playWrong(); showFeedback('😊 Chưa đúng!');
+  }
+}
+
+// ---------- COMPLETION ----------
+function renderCompletion() {
+  const lesson = APP.currentLesson;
+  const score = APP.scores[lesson.id];
+  const pct = Math.round((score.correct / score.total) * 100);
+  playComplete(); spawnConfetti();
+  let msg, icon;
+  if (pct === 100) { msg = 'Xuất sắc! Đúng hết!'; icon = '🏆'; }
+  else if (pct >= 70) { msg = 'Giỏi lắm!'; icon = '🌟'; }
+  else { msg = 'Cố gắng thêm nhé!'; icon = '💪'; }
+  let html = `<div class="game-area fade-in"><div class="completion-screen">
+    <div class="big-icon">${icon}</div>
+    <h2>${msg}</h2>
+    <p>${score.correct} / ${score.total} (${pct}%)</p>
+    <div class="nav-row">
+      <button class="btn-nav orange" onclick="startLesson(${APP.currentCat}, ${ALL_CATS[APP.currentCat].indexOf(lesson)})">🔄 Làm lại</button>
+      <button class="btn-nav green" onclick="openCategory(${APP.currentCat})">📋 Bài khác</button>
+      <button class="btn-nav" onclick="goHome()">🏠 Trang chủ</button>
+    </div>
+  </div></div>`;
+  document.getElementById('lessonScreen').innerHTML = html;
+  updateProgress();
+}
+
+// ===================================================================
+// STARS & FEEDBACK & CONFETTI
+// ===================================================================
+function addStars(n) {
+  APP.stars += n;
+  const el = document.getElementById('starCount');
+  el.textContent = '⭐ ' + APP.stars;
+  el.style.transform = 'scale(1.3)';
+  setTimeout(() => el.style.transform = 'scale(1)', 200);
+}
+function showFeedback(text) {
+  const overlay = document.getElementById('feedbackOverlay');
+  document.getElementById('feedbackMsg').textContent = text;
+  overlay.classList.add('show');
+  setTimeout(() => overlay.classList.remove('show'), 1000);
+}
+function spawnConfetti() {
+  const c = document.getElementById('rewardContainer');
+  const colors = ['#FF6B6B','#4ECDC4','#FFE66D','#A8E6CF','#FF8A5C','#9B51E0','#4A90D9'];
+  for (let i = 0; i < 30; i++) {
+    const d = document.createElement('div');
+    d.className = 'confetti';
+    d.style.left = Math.random()*100+'%';
+    d.style.background = colors[Math.floor(Math.random()*colors.length)];
+    d.style.animationDelay = Math.random()*0.4+'s';
+    d.style.width = (6+Math.random()*6)+'px';
+    d.style.height = (6+Math.random()*6)+'px';
+    c.appendChild(d);
+  }
+  setTimeout(() => c.innerHTML = '', 2500);
+}
+
+// ===================================================================
+// PROGRESS
+// ===================================================================
+function updateProgress() {
+  for (let cat = 1; cat <= 4; cat++) {
+    const lessons = ALL_CATS[cat];
+    let done = 0;
+    lessons.forEach(l => { const s = APP.scores[l.id]; if (s && s.correct === s.total && s.total > 0) done++; });
+    const el = document.getElementById('prog'+cat);
+    if (el) el.style.width = Math.round((done/lessons.length)*100)+'%';
+  }
+}
+
+// ===================================================================
+// TEACHER PANEL
+// ===================================================================
+function showTeacherPanel() {
+  const content = document.getElementById('teacherContent');
+  let html = `<h2>📊 Tiến trình học tập</h2>`;
+  html += `<p style="margin-bottom:12px; color:var(--text-light)">Tổng sao: ⭐ ${APP.stars}</p>`;
+  for (let cat = 1; cat <= 4; cat++) {
+    html += `<h3 style="color:${CAT_COLORS[cat]}; margin-top:16px; font-size:16px">${CAT_NAMES[cat]}</h3>`;
+    html += `<table><tr><th>Bài</th><th>Kết quả</th><th>Trạng thái</th></tr>`;
+    ALL_CATS[cat].forEach(l => {
+      const s = APP.scores[l.id];
+      const done = s && s.correct === s.total && s.total > 0;
+      html += `<tr><td>${l.icon} ${l.name}</td><td>${s ? s.correct+'/'+s.total : '-'}</td>
+        <td>${done ? '✅' : s && s.total > 0 ? '🔄' : '⬜'}</td></tr>`;
+    });
+    html += `</table>`;
+  }
+  html += `<div style="text-align:center; margin-top:16px">
+    <button class="btn-reset" onclick="resetProgress()">🗑️ Reset</button>
+    <button class="btn-close-panel" onclick="closeTeacherPanel()">Đóng</button>
+  </div>`;
+  content.innerHTML = html;
+  document.getElementById('teacherPanel').classList.add('show');
+}
+function closeTeacherPanel() { document.getElementById('teacherPanel').classList.remove('show'); }
+function resetProgress() {
+  if (confirm('Xóa toàn bộ tiến trình?')) {
+    APP.scores = {}; APP.stars = 0;
+    document.getElementById('starCount').textContent = '⭐ 0';
+    updateProgress(); closeTeacherPanel(); goHome();
+  }
+}
+
+// ===================================================================
+// SAVE/LOAD
+// ===================================================================
+function saveState() {
+  try { localStorage.setItem('beHocVui', JSON.stringify({stars:APP.stars, scores:APP.scores})); } catch(e) {}
+}
+function loadState() {
+  try {
+    const d = JSON.parse(localStorage.getItem('beHocVui'));
+    if (d) { APP.stars = d.stars||0; APP.scores = d.scores||{}; document.getElementById('starCount').textContent = '⭐ '+APP.stars; updateProgress(); }
+  } catch(e) {}
+}
+setInterval(saveState, 5000);
+window.addEventListener('beforeunload', saveState);
+loadState();
+
+// ===================================================================
+// PWA INSTALL
+// ===================================================================
+let deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  document.getElementById('installBanner').classList.add('show');
+});
+function installApp() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(r => {
+      document.getElementById('installBanner').classList.remove('show');
+      deferredPrompt = null;
+    });
+  }
+}
+function closeInstallBanner() { document.getElementById('installBanner').classList.remove('show'); }
+
+// Register Service Worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(()=>{});
+  });
+}
+
+// Prevent pull-to-refresh on mobile
+document.addEventListener('touchmove', e => {
+  if (e.touches.length > 1) e.preventDefault();
+}, { passive: false });
+</script>
+
+</body>
+</html>
