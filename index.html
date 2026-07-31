@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Bé Học Vui">
+<meta name="apple-mobile-web-app-title" content="Bé Vui Học">
 <meta name="theme-color" content="#4A90D9">
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="manifest" href="./manifest.json">
 <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='100' fill='%234A90D9'/><text x='256' y='340' font-size='280' text-anchor='middle' fill='white'>🌟</text></svg>">
-<title>Bé Học Vui - Phần mềm dạy học cho trẻ tự kỷ</title>
+<title>Bé Vui Học, Chăm Ngoan</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
 
@@ -597,8 +597,8 @@
 <!-- HEADER -->
 <div class="app-header">
   <div>
-    <h1>Bé Học Vui</h1>
-    <div class="subtitle">Dạy học cho trẻ tự kỷ (4-7 tuổi)</div>
+    <h1>Bé Vui Học, Chăm Ngoan</h1>
+    <div class="subtitle">Cùng bé khám phá thế giới xung quanh</div>
   </div>
   <div class="header-right">
     <div class="star-count" id="starCount">⭐ 0</div>
@@ -620,25 +620,25 @@
   <div class="menu-card cat-1" onclick="openCategory(1)">
     <div class="icon">🎨</div>
     <h2>Nhận Biết</h2>
-    <p>Đồ vật, màu sắc, hình dạng</p>
+    <p>Màu sắc, đồ vật, hình dạng, số đếm, cơ thể, phương tiện</p>
     <div class="progress-bar"><div class="progress-fill" id="prog1" style="width:0%"></div></div>
   </div>
   <div class="menu-card cat-2" onclick="openCategory(2)">
     <div class="icon">😊</div>
     <h2>Giao Tiếp</h2>
-    <p>Cảm xúc, chào hỏi, tình huống</p>
+    <p>Cảm xúc, chào hỏi, tình huống, đúng sai, nghề nghiệp</p>
     <div class="progress-bar"><div class="progress-fill" id="prog2" style="width:0%"></div></div>
   </div>
   <div class="menu-card cat-3" onclick="openCategory(3)">
     <div class="icon">📖</div>
     <h2>Ngôn Ngữ</h2>
-    <p>Từ vựng, ghép từ, đọc từ</p>
+    <p>Động vật, trái cây, rau củ, thức ăn, thời tiết, đồ dùng</p>
     <div class="progress-bar"><div class="progress-fill" id="prog3" style="width:0%"></div></div>
   </div>
   <div class="menu-card cat-4" onclick="openCategory(4)">
     <div class="icon">🌅</div>
     <h2>Sinh Hoạt</h2>
-    <p>Thói quen, vệ sinh, ăn uống</p>
+    <p>Buổi sáng, đi học, ăn cơm, tắm rửa, an toàn, vệ sinh</p>
     <div class="progress-bar"><div class="progress-fill" id="prog4" style="width:0%"></div></div>
   </div>
 </div>
@@ -697,6 +697,16 @@ const CAT1_LESSONS = [
         {icon:"", label:"Cam", color:"#ED8936", correct:true},
         {icon:"", label:"Xanh dương", color:"#3182CE", correct:false},
       ]},
+      { prompt: "🟣", promptLabel: "Màu TÍM", instruction: "Chọn màu TÍM", options: [
+        {icon:"", label:"Tím", color:"#9B51E0", correct:true},
+        {icon:"", label:"Đỏ", color:"#E53E3E", correct:false},
+        {icon:"", label:"Xanh lá", color:"#38A169", correct:false},
+      ]},
+      { prompt: "🩷", promptLabel: "Màu HỒNG", instruction: "Chọn màu HỒNG", options: [
+        {icon:"", label:"Cam", color:"#ED8936", correct:false},
+        {icon:"", label:"Hồng", color:"#ED64A6", correct:true},
+        {icon:"", label:"Vàng", color:"#ECC94B", correct:false},
+      ]},
     ]
   },
   {
@@ -728,6 +738,16 @@ const CAT1_LESSONS = [
         {icon:"⭐", label:"Ngôi sao", correct:false},
         {icon:"🍕", label:"Bánh pizza", correct:false},
       ]},
+      { prompt: "🪑", instruction: "Đây là gì?", options: [
+        {icon:"🪑", label:"Cái ghế", correct:true},
+        {icon:"🛏️", label:"Cái giường", correct:false},
+        {icon:"🚪", label:"Cái cửa", correct:false},
+      ]},
+      { prompt: "⏰", instruction: "Đây là gì?", options: [
+        {icon:"📱", label:"Điện thoại", correct:false},
+        {icon:"⏰", label:"Đồng hồ", correct:true},
+        {icon:"📺", label:"Tivi", correct:false},
+      ]},
     ]
   },
   {
@@ -753,6 +773,149 @@ const CAT1_LESSONS = [
         {icon:"⚫", label:"Hình tròn", correct:false},
         {icon:"🔺", label:"Tam giác", correct:false},
         {icon:"⭐", label:"Ngôi sao", correct:true},
+      ]},
+      { prompt: "💎", promptLabel: "HÌNH THOI", instruction: "Chọn hình THOI", options: [
+        {icon:"💎", label:"Hình thoi", correct:true},
+        {icon:"⬛", label:"Hình vuông", correct:false},
+        {icon:"⚫", label:"Hình tròn", correct:false},
+      ]},
+    ]
+  },
+  {
+    id: "1-4", name: "Số đếm", icon: "🔢",
+    type: "identify",
+    questions: [
+      { prompt: "1️⃣", promptLabel: "Số MỘT", instruction: "Đây là số mấy?", options: [
+        {icon:"1️⃣", label:"Số 1", correct:true},
+        {icon:"2️⃣", label:"Số 2", correct:false},
+        {icon:"3️⃣", label:"Số 3", correct:false},
+      ]},
+      { prompt: "2️⃣", promptLabel: "Số HAI", instruction: "Đây là số mấy?", options: [
+        {icon:"1️⃣", label:"Số 1", correct:false},
+        {icon:"2️⃣", label:"Số 2", correct:true},
+        {icon:"5️⃣", label:"Số 5", correct:false},
+      ]},
+      { prompt: "3️⃣", promptLabel: "Số BA", instruction: "Đây là số mấy?", options: [
+        {icon:"3️⃣", label:"Số 3", correct:true},
+        {icon:"4️⃣", label:"Số 4", correct:false},
+        {icon:"6️⃣", label:"Số 6", correct:false},
+      ]},
+      { prompt: "5️⃣", promptLabel: "Số NĂM", instruction: "Đây là số mấy?", options: [
+        {icon:"4️⃣", label:"Số 4", correct:false},
+        {icon:"7️⃣", label:"Số 7", correct:false},
+        {icon:"5️⃣", label:"Số 5", correct:true},
+      ]},
+      { prompt: "🍎🍎🍎", promptLabel: "Đếm số táo", instruction: "Có bao nhiêu quả táo?", options: [
+        {icon:"2️⃣", label:"2 quả", correct:false},
+        {icon:"3️⃣", label:"3 quả", correct:true},
+        {icon:"4️⃣", label:"4 quả", correct:false},
+      ]},
+      { prompt: "⭐⭐⭐⭐⭐", promptLabel: "Đếm số sao", instruction: "Có bao nhiêu ngôi sao?", options: [
+        {icon:"3️⃣", label:"3 sao", correct:false},
+        {icon:"5️⃣", label:"5 sao", correct:true},
+        {icon:"4️⃣", label:"4 sao", correct:false},
+      ]},
+    ]
+  },
+  {
+    id: "1-5", name: "So sánh", icon: "📏",
+    type: "identify",
+    questions: [
+      { prompt: "🐘🐁", promptLabel: "Voi và Chuột", instruction: "Con nào TO hơn?", options: [
+        {icon:"🐘", label:"Con voi", correct:true},
+        {icon:"🐁", label:"Con chuột", correct:false},
+      ]},
+      { prompt: "🌳🌱", promptLabel: "Cây và Mầm", instruction: "Cái nào CAO hơn?", options: [
+        {icon:"🌳", label:"Cái cây", correct:true},
+        {icon:"🌱", label:"Cái mầm", correct:false},
+      ]},
+      { prompt: "🍉🍇", promptLabel: "Dưa hấu và Nho", instruction: "Quả nào NHỎ hơn?", options: [
+        {icon:"🍉", label:"Dưa hấu", correct:false},
+        {icon:"🍇", label:"Quả nho", correct:true},
+      ]},
+      { prompt: "🚗🚲", promptLabel: "Ô tô và Xe đạp", instruction: "Cái nào NHANH hơn?", options: [
+        {icon:"🚗", label:"Ô tô", correct:true},
+        {icon:"🚲", label:"Xe đạp", correct:false},
+      ]},
+      { prompt: "☀️🌙", promptLabel: "Mặt trời và Mặt trăng", instruction: "Cái nào SÁNG hơn?", options: [
+        {icon:"☀️", label:"Mặt trời", correct:true},
+        {icon:"🌙", label:"Mặt trăng", correct:false},
+      ]},
+      { prompt: "🏔️🏠", promptLabel: "Núi và Nhà", instruction: "Cái nào CAO hơn?", options: [
+        {icon:"🏠", label:"Ngôi nhà", correct:false},
+        {icon:"🏔️", label:"Ngọn núi", correct:true},
+      ]},
+    ]
+  },
+  {
+    id: "1-6", name: "Bộ phận cơ thể", icon: "🖐️",
+    type: "identify",
+    questions: [
+      { prompt: "👁️", instruction: "Đây là bộ phận nào?", options: [
+        {icon:"👁️", label:"Con mắt", correct:true},
+        {icon:"👃", label:"Cái mũi", correct:false},
+        {icon:"👂", label:"Cái tai", correct:false},
+      ]},
+      { prompt: "👃", instruction: "Đây là bộ phận nào?", options: [
+        {icon:"👄", label:"Cái miệng", correct:false},
+        {icon:"👃", label:"Cái mũi", correct:true},
+        {icon:"👁️", label:"Con mắt", correct:false},
+      ]},
+      { prompt: "👂", instruction: "Đây là bộ phận nào?", options: [
+        {icon:"👂", label:"Cái tai", correct:true},
+        {icon:"👃", label:"Cái mũi", correct:false},
+        {icon:"🖐️", label:"Bàn tay", correct:false},
+      ]},
+      { prompt: "👄", instruction: "Đây là bộ phận nào?", options: [
+        {icon:"👁️", label:"Con mắt", correct:false},
+        {icon:"👄", label:"Cái miệng", correct:true},
+        {icon:"👂", label:"Cái tai", correct:false},
+      ]},
+      { prompt: "🖐️", instruction: "Đây là bộ phận nào?", options: [
+        {icon:"🦶", label:"Bàn chân", correct:false},
+        {icon:"👂", label:"Cái tai", correct:false},
+        {icon:"🖐️", label:"Bàn tay", correct:true},
+      ]},
+      { prompt: "🦶", instruction: "Đây là bộ phận nào?", options: [
+        {icon:"🦶", label:"Bàn chân", correct:true},
+        {icon:"🖐️", label:"Bàn tay", correct:false},
+        {icon:"👃", label:"Cái mũi", correct:false},
+      ]},
+    ]
+  },
+  {
+    id: "1-7", name: "Phương tiện", icon: "🚌",
+    type: "identify",
+    questions: [
+      { prompt: "🚌", instruction: "Đây là gì?", options: [
+        {icon:"🚌", label:"Xe buýt", correct:true},
+        {icon:"🚗", label:"Xe ô tô", correct:false},
+        {icon:"🚂", label:"Tàu hỏa", correct:false},
+      ]},
+      { prompt: "✈️", instruction: "Đây là gì?", options: [
+        {icon:"🚁", label:"Trực thăng", correct:false},
+        {icon:"✈️", label:"Máy bay", correct:true},
+        {icon:"🚀", label:"Tên lửa", correct:false},
+      ]},
+      { prompt: "🚲", instruction: "Đây là gì?", options: [
+        {icon:"🚲", label:"Xe đạp", correct:true},
+        {icon:"🏍️", label:"Xe máy", correct:false},
+        {icon:"🚗", label:"Xe ô tô", correct:false},
+      ]},
+      { prompt: "🚂", instruction: "Đây là gì?", options: [
+        {icon:"🚌", label:"Xe buýt", correct:false},
+        {icon:"🚂", label:"Tàu hỏa", correct:true},
+        {icon:"🚢", label:"Tàu thủy", correct:false},
+      ]},
+      { prompt: "🚢", instruction: "Đây là gì?", options: [
+        {icon:"🚢", label:"Tàu thủy", correct:true},
+        {icon:"✈️", label:"Máy bay", correct:false},
+        {icon:"🚂", label:"Tàu hỏa", correct:false},
+      ]},
+      { prompt: "🏍️", instruction: "Đây là gì?", options: [
+        {icon:"🚲", label:"Xe đạp", correct:false},
+        {icon:"🏍️", label:"Xe máy", correct:true},
+        {icon:"🛵", label:"Xe tay ga", correct:false},
       ]},
     ]
   },
@@ -789,6 +952,21 @@ const CAT2_LESSONS = [
         {icon:"😠", label:"Tức giận", correct:false},
         {icon:"😢", label:"Buồn", correct:false},
       ]},
+      { prompt: "😴", instruction: "Bạn này cảm thấy thế nào?", options: [
+        {icon:"😊", label:"Vui vẻ", correct:false},
+        {icon:"😴", label:"Buồn ngủ", correct:true},
+        {icon:"😠", label:"Tức giận", correct:false},
+      ]},
+      { prompt: "🥰", instruction: "Bạn này cảm thấy thế nào?", options: [
+        {icon:"🥰", label:"Yêu thương", correct:true},
+        {icon:"😢", label:"Buồn", correct:false},
+        {icon:"😲", label:"Ngạc nhiên", correct:false},
+      ]},
+      { prompt: "😤", instruction: "Bạn này cảm thấy thế nào?", options: [
+        {icon:"😊", label:"Vui vẻ", correct:false},
+        {icon:"😤", label:"Bực bội", correct:true},
+        {icon:"😴", label:"Buồn ngủ", correct:false},
+      ]},
     ]
   },
   {
@@ -796,9 +974,10 @@ const CAT2_LESSONS = [
     type: "matching",
     pairs: [
       { left: "👋 Gặp bạn", right: "Xin chào!" },
-      { left: "😊 Cảm ơn ai", right: "Cảm ơn!" },
+      { left: "😊 Được giúp", right: "Cảm ơn!" },
       { left: "😥 Làm sai", right: "Xin lỗi!" },
       { left: "🖐️ Tạm biệt", right: "Tạm biệt!" },
+      { left: "🤝 Nhờ giúp", right: "Làm ơn!" },
     ]
   },
   {
@@ -825,6 +1004,87 @@ const CAT2_LESSONS = [
         {icon:"😤", label:"Ăn trước", correct:false},
         {icon:"📱", label:"Chơi điện thoại", correct:false},
       ]},
+      { prompt: "🧹", promptLabel: "Phòng bị bừa", instruction: "Bạn nên làm gì?", options: [
+        {icon:"🧹", label:"Dọn dẹp", correct:true},
+        {icon:"🚶", label:"Bỏ đi chơi", correct:false},
+        {icon:"😴", label:"Đi ngủ", correct:false},
+      ]},
+      { prompt: "👵", promptLabel: "Gặp bà ngoại", instruction: "Bạn nên nói gì?", options: [
+        {icon:"🙏", label:"Chào bà ạ!", correct:true},
+        {icon:"😶", label:"Không nói gì", correct:false},
+        {icon:"🏃", label:"Chạy đi chơi", correct:false},
+      ]},
+    ]
+  },
+  {
+    id: "2-4", name: "Đúng hay sai", icon: "✅",
+    type: "identify",
+    questions: [
+      { prompt: "🗣️", promptLabel: "Nói chuyện khi cô giảng bài", instruction: "Hành động này đúng hay sai?", options: [
+        {icon:"❌", label:"Sai", correct:true},
+        {icon:"✅", label:"Đúng", correct:false},
+      ]},
+      { prompt: "🤲", promptLabel: "Chia sẻ đồ chơi với bạn", instruction: "Hành động này đúng hay sai?", options: [
+        {icon:"✅", label:"Đúng", correct:true},
+        {icon:"❌", label:"Sai", correct:false},
+      ]},
+      { prompt: "🗑️", promptLabel: "Vứt rác đúng chỗ", instruction: "Hành động này đúng hay sai?", options: [
+        {icon:"✅", label:"Đúng", correct:true},
+        {icon:"❌", label:"Sai", correct:false},
+      ]},
+      { prompt: "👊", promptLabel: "Đánh bạn khi tức giận", instruction: "Hành động này đúng hay sai?", options: [
+        {icon:"❌", label:"Sai", correct:true},
+        {icon:"✅", label:"Đúng", correct:false},
+      ]},
+      { prompt: "🧍", promptLabel: "Xếp hàng chờ đến lượt", instruction: "Hành động này đúng hay sai?", options: [
+        {icon:"✅", label:"Đúng", correct:true},
+        {icon:"❌", label:"Sai", correct:false},
+      ]},
+      { prompt: "📢", promptLabel: "Hét to trong thư viện", instruction: "Hành động này đúng hay sai?", options: [
+        {icon:"❌", label:"Sai", correct:true},
+        {icon:"✅", label:"Đúng", correct:false},
+      ]},
+      { prompt: "🙏", promptLabel: "Nói cảm ơn khi được giúp", instruction: "Hành động này đúng hay sai?", options: [
+        {icon:"✅", label:"Đúng", correct:true},
+        {icon:"❌", label:"Sai", correct:false},
+      ]},
+    ]
+  },
+  {
+    id: "2-5", name: "Khi nào nên...", icon: "🤔",
+    type: "identify",
+    questions: [
+      { prompt: "😊", promptLabel: "Khi nào bạn VUI?", instruction: "Chọn tình huống khiến bạn VUI", options: [
+        {icon:"🎂", label:"Được mừng sinh nhật", correct:true},
+        {icon:"🌧️", label:"Trời mưa to", correct:false},
+        {icon:"📝", label:"Bị điểm kém", correct:false},
+      ]},
+      { prompt: "😢", promptLabel: "Khi nào bạn BUỒN?", instruction: "Chọn tình huống khiến bạn BUỒN", options: [
+        {icon:"🎁", label:"Được quà", correct:false},
+        {icon:"💔", label:"Mất đồ chơi yêu thích", correct:true},
+        {icon:"🍦", label:"Ăn kem", correct:false},
+      ]},
+      { prompt: "😨", promptLabel: "Khi nào bạn SỢ?", instruction: "Chọn tình huống khiến bạn SỢ", options: [
+        {icon:"🌞", label:"Ngày nắng đẹp", correct:false},
+        {icon:"⛈️", label:"Sấm sét to", correct:true},
+        {icon:"🎵", label:"Nghe nhạc", correct:false},
+      ]},
+      { prompt: "😠", promptLabel: "Bạn tức giận thì sao?", instruction: "Khi tức giận, bạn nên làm gì?", options: [
+        {icon:"🧘", label:"Hít thở sâu", correct:true},
+        {icon:"👊", label:"Đánh bạn", correct:false},
+        {icon:"📢", label:"Hét to lên", correct:false},
+      ]},
+    ]
+  },
+  {
+    id: "2-6", name: "Ai làm gì?", icon: "👨‍👩‍👧",
+    type: "matching",
+    pairs: [
+      { left: "👨‍⚕️ Bác sĩ", right: "Khám bệnh" },
+      { left: "👩‍🏫 Cô giáo", right: "Dạy học" },
+      { left: "👨‍🍳 Đầu bếp", right: "Nấu ăn" },
+      { left: "👮 Công an", right: "Giữ gìn trật tự" },
+      { left: "🧑‍🚒 Lính cứu hỏa", right: "Chữa cháy" },
     ]
   },
 ];
@@ -860,10 +1120,25 @@ const CAT3_LESSONS = [
         {icon:"🐍", label:"Con rắn", correct:false},
         {icon:"🦎", label:"Thằn lằn", correct:false},
       ]},
+      { prompt: "🐢", instruction: "Con vật này tên gì?", options: [
+        {icon:"🐢", label:"Con rùa", correct:true},
+        {icon:"🐊", label:"Cá sấu", correct:false},
+        {icon:"🐸", label:"Con ếch", correct:false},
+      ]},
+      { prompt: "🦁", instruction: "Con vật này tên gì?", options: [
+        {icon:"🐯", label:"Con hổ", correct:false},
+        {icon:"🦁", label:"Sư tử", correct:true},
+        {icon:"🐻", label:"Con gấu", correct:false},
+      ]},
+      { prompt: "🐓", instruction: "Con vật này tên gì?", options: [
+        {icon:"🐓", label:"Con gà", correct:true},
+        {icon:"🦆", label:"Con vịt", correct:false},
+        {icon:"🐦", label:"Con chim", correct:false},
+      ]},
     ]
   },
   {
-    id: "3-2", name: "Ghép từ", icon: "🔤",
+    id: "3-2", name: "Ghép từ & hình", icon: "🔤",
     type: "matching",
     pairs: [
       { left: "🍎", right: "Quả táo" },
@@ -896,6 +1171,143 @@ const CAT3_LESSONS = [
         {icon:"🍈", label:"Dưa lưới", correct:false},
         {icon:"🍉", label:"Dưa hấu", correct:true},
         {icon:"🥥", label:"Quả dừa", correct:false},
+      ]},
+      { prompt: "🥭", instruction: "Đây là trái gì?", options: [
+        {icon:"🥭", label:"Quả xoài", correct:true},
+        {icon:"🍑", label:"Quả đào", correct:false},
+        {icon:"🍌", label:"Quả chuối", correct:false},
+      ]},
+      { prompt: "🍓", instruction: "Đây là trái gì?", options: [
+        {icon:"🍒", label:"Cherry", correct:false},
+        {icon:"🍓", label:"Dâu tây", correct:true},
+        {icon:"🍎", label:"Quả táo", correct:false},
+      ]},
+    ]
+  },
+  {
+    id: "3-4", name: "Rau củ", icon: "🥕",
+    type: "identify",
+    questions: [
+      { prompt: "🥕", instruction: "Đây là gì?", options: [
+        {icon:"🥕", label:"Cà rốt", correct:true},
+        {icon:"🌽", label:"Bắp ngô", correct:false},
+        {icon:"🥒", label:"Dưa leo", correct:false},
+      ]},
+      { prompt: "🌽", instruction: "Đây là gì?", options: [
+        {icon:"🥕", label:"Cà rốt", correct:false},
+        {icon:"🌽", label:"Bắp ngô", correct:true},
+        {icon:"🍆", label:"Cà tím", correct:false},
+      ]},
+      { prompt: "🥒", instruction: "Đây là gì?", options: [
+        {icon:"🥒", label:"Dưa leo", correct:true},
+        {icon:"🌶️", label:"Ớt", correct:false},
+        {icon:"🥕", label:"Cà rốt", correct:false},
+      ]},
+      { prompt: "🍅", instruction: "Đây là gì?", options: [
+        {icon:"🍎", label:"Quả táo", correct:false},
+        {icon:"🍅", label:"Cà chua", correct:true},
+        {icon:"🌶️", label:"Ớt", correct:false},
+      ]},
+      { prompt: "🥦", instruction: "Đây là gì?", options: [
+        {icon:"🥦", label:"Bông cải", correct:true},
+        {icon:"🥬", label:"Rau cải", correct:false},
+        {icon:"🌽", label:"Bắp ngô", correct:false},
+      ]},
+    ]
+  },
+  {
+    id: "3-5", name: "Đồ dùng học tập", icon: "✏️",
+    type: "matching",
+    pairs: [
+      { left: "✏️", right: "Bút chì" },
+      { left: "📏", right: "Thước kẻ" },
+      { left: "📖", right: "Quyển vở" },
+      { left: "🎒", right: "Cặp sách" },
+      { left: "✂️", right: "Cái kéo" },
+      { left: "🖍️", right: "Bút màu" },
+    ]
+  },
+  {
+    id: "3-6", name: "Trong nhà", icon: "🏠",
+    type: "identify",
+    questions: [
+      { prompt: "🛏️", instruction: "Đây là gì?", options: [
+        {icon:"🛏️", label:"Cái giường", correct:true},
+        {icon:"🪑", label:"Cái ghế", correct:false},
+        {icon:"🚪", label:"Cái cửa", correct:false},
+      ]},
+      { prompt: "📺", instruction: "Đây là gì?", options: [
+        {icon:"📺", label:"Cái tivi", correct:true},
+        {icon:"💻", label:"Máy tính", correct:false},
+        {icon:"📱", label:"Điện thoại", correct:false},
+      ]},
+      { prompt: "🚿", instruction: "Đây là gì?", options: [
+        {icon:"🚰", label:"Vòi nước", correct:false},
+        {icon:"🚿", label:"Vòi tắm", correct:true},
+        {icon:"🛁", label:"Bồn tắm", correct:false},
+      ]},
+      { prompt: "🪟", instruction: "Đây là gì?", options: [
+        {icon:"🪟", label:"Cửa sổ", correct:true},
+        {icon:"🚪", label:"Cái cửa", correct:false},
+        {icon:"🖼️", label:"Bức tranh", correct:false},
+      ]},
+      { prompt: "🍳", instruction: "Đây là gì?", options: [
+        {icon:"🥄", label:"Cái thìa", correct:false},
+        {icon:"🍳", label:"Cái chảo", correct:true},
+        {icon:"🥣", label:"Cái bát", correct:false},
+      ]},
+      { prompt: "🧸", instruction: "Đây là gì?", options: [
+        {icon:"🧸", label:"Gấu bông", correct:true},
+        {icon:"🎮", label:"Máy chơi game", correct:false},
+        {icon:"🎪", label:"Rạp xiếc", correct:false},
+      ]},
+    ]
+  },
+  {
+    id: "3-7", name: "Thời tiết", icon: "🌤️",
+    type: "matching",
+    pairs: [
+      { left: "☀️", right: "Nắng" },
+      { left: "🌧️", right: "Mưa" },
+      { left: "⛈️", right: "Bão" },
+      { left: "❄️", right: "Tuyết" },
+      { left: "🌈", right: "Cầu vồng" },
+      { left: "☁️", right: "Mây" },
+    ]
+  },
+  {
+    id: "3-8", name: "Thức ăn", icon: "🍕",
+    type: "identify",
+    questions: [
+      { prompt: "🍚", instruction: "Đây là gì?", options: [
+        {icon:"🍚", label:"Cơm", correct:true},
+        {icon:"🍜", label:"Phở", correct:false},
+        {icon:"🍞", label:"Bánh mì", correct:false},
+      ]},
+      { prompt: "🍜", instruction: "Đây là gì?", options: [
+        {icon:"🍚", label:"Cơm", correct:false},
+        {icon:"🍜", label:"Phở", correct:true},
+        {icon:"🍝", label:"Mì ống", correct:false},
+      ]},
+      { prompt: "🍞", instruction: "Đây là gì?", options: [
+        {icon:"🍞", label:"Bánh mì", correct:true},
+        {icon:"🍰", label:"Bánh kem", correct:false},
+        {icon:"🧁", label:"Bánh cupcake", correct:false},
+      ]},
+      { prompt: "🥛", instruction: "Đây là gì?", options: [
+        {icon:"🧃", label:"Nước ép", correct:false},
+        {icon:"🥛", label:"Sữa", correct:true},
+        {icon:"🍵", label:"Trà", correct:false},
+      ]},
+      { prompt: "🍰", instruction: "Đây là gì?", options: [
+        {icon:"🍞", label:"Bánh mì", correct:false},
+        {icon:"🍰", label:"Bánh kem", correct:true},
+        {icon:"🍩", label:"Bánh donut", correct:false},
+      ]},
+      { prompt: "🍦", instruction: "Đây là gì?", options: [
+        {icon:"🍦", label:"Kem", correct:true},
+        {icon:"🥛", label:"Sữa", correct:false},
+        {icon:"🧁", label:"Cupcake", correct:false},
       ]},
     ]
   },
@@ -937,6 +1349,110 @@ const CAT4_LESSONS = [
       { icon: "🪥", label: "Đánh răng" },
       { icon: "📖", label: "Đọc sách" },
       { icon: "😴", label: "Đi ngủ" },
+    ]
+  },
+  {
+    id: "4-4", name: "Đi học", icon: "🏫",
+    type: "sequence",
+    title: "Sắp xếp thứ tự đi học",
+    steps: [
+      { icon: "🎒", label: "Chuẩn bị cặp" },
+      { icon: "👟", label: "Mang giày" },
+      { icon: "👋", label: "Chào bố mẹ" },
+      { icon: "🚌", label: "Lên xe" },
+      { icon: "🏫", label: "Đến trường" },
+    ]
+  },
+  {
+    id: "4-5", name: "Ăn cơm", icon: "🍽️",
+    type: "sequence",
+    title: "Sắp xếp thứ tự ăn cơm",
+    steps: [
+      { icon: "🧼", label: "Rửa tay" },
+      { icon: "🪑", label: "Ngồi vào bàn" },
+      { icon: "🙏", label: "Mời cả nhà" },
+      { icon: "🍚", label: "Ăn cơm" },
+      { icon: "🍽️", label: "Dọn bát đĩa" },
+    ]
+  },
+  {
+    id: "4-6", name: "An toàn", icon: "⚠️",
+    type: "identify",
+    questions: [
+      { prompt: "🔥", promptLabel: "Thấy lửa cháy", instruction: "Bạn nên làm gì?", options: [
+        {icon:"🏃", label:"Chạy ra xa", correct:true},
+        {icon:"🖐️", label:"Sờ vào lửa", correct:false},
+        {icon:"😶", label:"Đứng xem", correct:false},
+      ]},
+      { prompt: "🚦", promptLabel: "Đèn giao thông ĐỎ", instruction: "Bạn nên làm gì?", options: [
+        {icon:"🛑", label:"Dừng lại", correct:true},
+        {icon:"🏃", label:"Chạy qua", correct:false},
+        {icon:"🚶", label:"Đi chậm", correct:false},
+      ]},
+      { prompt: "💊", promptLabel: "Thấy thuốc trên bàn", instruction: "Bạn nên làm gì?", options: [
+        {icon:"🙅", label:"Không uống", correct:true},
+        {icon:"😋", label:"Ăn thử", correct:false},
+        {icon:"🤲", label:"Chơi với thuốc", correct:false},
+      ]},
+      { prompt: "🏊", promptLabel: "Muốn đi bơi", instruction: "Bạn nên làm gì?", options: [
+        {icon:"👨‍👩‍👧", label:"Đi cùng bố mẹ", correct:true},
+        {icon:"🏃", label:"Tự đi một mình", correct:false},
+        {icon:"🤫", label:"Trốn đi bơi", correct:false},
+      ]},
+      { prompt: "🔌", promptLabel: "Thấy ổ điện", instruction: "Bạn nên làm gì?", options: [
+        {icon:"🙅", label:"Không chạm vào", correct:true},
+        {icon:"👆", label:"Thọc tay vào", correct:false},
+        {icon:"💧", label:"Đổ nước vào", correct:false},
+      ]},
+      { prompt: "🐕", promptLabel: "Gặp chó lạ ngoài đường", instruction: "Bạn nên làm gì?", options: [
+        {icon:"🧍", label:"Đứng yên, không chạy", correct:true},
+        {icon:"🏃", label:"Chạy thật nhanh", correct:false},
+        {icon:"🖐️", label:"Vuốt đầu chó", correct:false},
+      ]},
+    ]
+  },
+  {
+    id: "4-7", name: "Giữ vệ sinh", icon: "🧹",
+    type: "identify",
+    questions: [
+      { prompt: "🍬", promptLabel: "Ăn kẹo xong", instruction: "Bạn bỏ vỏ kẹo ở đâu?", options: [
+        {icon:"🗑️", label:"Thùng rác", correct:true},
+        {icon:"🏞️", label:"Vứt ra đất", correct:false},
+        {icon:"💺", label:"Nhét ghế", correct:false},
+      ]},
+      { prompt: "🤧", promptLabel: "Bạn bị hắt xì", instruction: "Bạn nên làm gì?", options: [
+        {icon:"🤲", label:"Che miệng", correct:true},
+        {icon:"😮", label:"Hắt xì vào bạn", correct:false},
+        {icon:"😶", label:"Không làm gì", correct:false},
+      ]},
+      { prompt: "🚽", promptLabel: "Đi vệ sinh xong", instruction: "Bạn nên làm gì?", options: [
+        {icon:"🧼", label:"Rửa tay", correct:true},
+        {icon:"🏃", label:"Chạy đi chơi", correct:false},
+        {icon:"📱", label:"Chơi điện thoại", correct:false},
+      ]},
+      { prompt: "👃", promptLabel: "Mũi bị chảy", instruction: "Bạn nên làm gì?", options: [
+        {icon:"🧻", label:"Lau bằng khăn giấy", correct:true},
+        {icon:"👕", label:"Lau vào áo", correct:false},
+        {icon:"😶", label:"Để yên", correct:false},
+      ]},
+      { prompt: "🛏️", promptLabel: "Sáng dậy", instruction: "Bạn nên làm gì với giường?", options: [
+        {icon:"🛏️", label:"Gấp chăn gọn", correct:true},
+        {icon:"🚶", label:"Bỏ đi luôn", correct:false},
+        {icon:"📱", label:"Nằm chơi điện thoại", correct:false},
+      ]},
+    ]
+  },
+  {
+    id: "4-8", name: "Tắm rửa", icon: "🛁",
+    type: "sequence",
+    title: "Sắp xếp thứ tự tắm rửa",
+    steps: [
+      { icon: "🚿", label: "Mở vòi sen" },
+      { icon: "💧", label: "Làm ướt người" },
+      { icon: "🧴", label: "Xà phòng tắm" },
+      { icon: "🧽", label: "Kỳ cọ sạch" },
+      { icon: "🚿", label: "Xả nước sạch" },
+      { icon: "🧖", label: "Lau khô người" },
     ]
   },
 ];

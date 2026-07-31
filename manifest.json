@@ -1,7 +1,7 @@
 {
-  "name": "Bé Học Vui - Dạy học cho trẻ tự kỷ",
-  "short_name": "Bé Học Vui",
-  "description": "Phần mềm hỗ trợ dạy học trực quan cho trẻ phổ tự kỷ 4-7 tuổi",
+  "name": "Bé Vui Học, Chăm Ngoan",
+  "short_name": "Bé Vui Học",
+  "description": "Cùng bé khám phá thế giới xung quanh - Nhận biết, giao tiếp, ngôn ngữ, sinh hoạt",
   "start_url": "./index.html",
   "display": "standalone",
   "orientation": "portrait",
