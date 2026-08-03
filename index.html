@@ -763,6 +763,142 @@
   @media (max-width: 500px) {
     .sub-menu { grid-template-columns: repeat(2, 1fr); }
   }
+
+  /* ===== BADGE SYSTEM ===== */
+  .badge-popup {
+    position: fixed; inset: 0;
+    display: none; align-items: center; justify-content: center;
+    z-index: 300; background: rgba(0,0,0,0.4); backdrop-filter: blur(4px);
+  }
+  .badge-popup.show { display: flex; }
+  .badge-card {
+    background: white;
+    border-radius: 28px;
+    padding: 36px 28px;
+    text-align: center;
+    max-width: 340px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    animation: badgePop 0.6s cubic-bezier(0.175,0.885,0.32,1.275);
+  }
+  @keyframes badgePop { 0%{transform:scale(0) rotate(-15deg);opacity:0} 100%{transform:scale(1) rotate(0);opacity:1} }
+  .badge-card .badge-icon { font-size: 80px; margin-bottom: 12px; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15)); }
+  .badge-card h3 { font-size: 22px; font-weight: 800; color: var(--primary); margin-bottom: 6px; }
+  .badge-card p { font-size: 15px; color: var(--text-light); margin-bottom: 16px; font-weight: 600; }
+  .badge-card button {
+    background: linear-gradient(135deg, #FF6B9D, #FF8A7A);
+    color: white; border: none; padding: 12px 32px;
+    border-radius: 50px; font-size: 16px; font-weight: 700;
+    font-family: inherit; cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255,107,157,0.3);
+  }
+  .level-bar {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    margin-bottom: 8px; padding: 6px 14px;
+    background: linear-gradient(135deg, #FFF0F5, #F0E6FF);
+    border-radius: 14px; font-weight: 700; font-size: 14px;
+    border: 2px solid #FFE0EB;
+  }
+  .level-bar .level-emoji { font-size: 20px; }
+  .level-bar .level-name { color: var(--primary); }
+  .level-bar .level-progress {
+    flex: 1; max-width: 120px; height: 8px;
+    background: #E8E8E8; border-radius: 8px; overflow: hidden;
+  }
+  .level-bar .level-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #FF6B9D, #FFC75F);
+    border-radius: 8px; transition: width 0.5s;
+  }
+  .badges-grid {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+    margin: 12px 0;
+  }
+  .badge-mini {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    background: #F0F0F0;
+    border: 2px solid #E0E0E0;
+    opacity: 0.4;
+    transition: all 0.3s;
+  }
+  .badge-mini.earned {
+    opacity: 1;
+    background: linear-gradient(135deg, #FFF5F7, #FFF0F5);
+    border-color: #FFD0E0;
+    box-shadow: 0 2px 8px rgba(255,107,157,0.2);
+    animation: badgeEarned 0.5s cubic-bezier(0.175,0.885,0.32,1.275);
+  }
+  @keyframes badgeEarned { 0%{transform:scale(0)} 60%{transform:scale(1.2)} 100%{transform:scale(1)} }
+
+  /* ===== COLORING GAME ===== */
+  .color-game-area {
+    background: white;
+    border-radius: 28px;
+    padding: 20px 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    text-align: center;
+    border: 2px solid #F5F5F5;
+    position: relative;
+  }
+  .color-game-area::after {
+    content: "";
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #FF6B9D, #FFC75F, #2ED573, #45AAF2, #A55EEA);
+    border-radius: 28px 28px 0 0;
+  }
+  .coloring-canvas {
+    border: 3px solid #E8E8E8;
+    border-radius: 16px;
+    cursor: crosshair;
+    touch-action: none;
+    max-width: 100%;
+    background: white;
+  }
+  .color-palette {
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 8px;
+    margin: 14px 0;
+  }
+  .palette-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 3px solid #E0E0E0;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  .palette-btn:hover { transform: scale(1.15); }
+  .palette-btn.active {
+    border-color: #333;
+    transform: scale(1.2);
+    box-shadow: 0 0 0 3px rgba(0,0,0,0.15);
+  }
+  .brush-size {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    margin: 8px 0;
+  }
+  .brush-size label { font-weight: 700; font-size: 14px; }
+  .brush-size input[type="range"] { width: 120px; }
+  .coloring-menu-card {
+    background: linear-gradient(145deg, #FFFFFF 60%, #FFF5F7);
+    border: 3px solid #FFD0E0;
+    border-radius: 28px;
+    padding: 30px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+    box-shadow: 0 8px 30px rgba(255,107,157,0.12);
+    min-height: 190px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+  }
+  .coloring-menu-card:hover { transform: translateY(-8px) scale(1.02); }
+  .coloring-menu-card .icon { font-size: 64px; margin-bottom: 12px; animation: iconFloat 4s ease-in-out infinite 2s; }
+  .coloring-menu-card h2 { font-size: 19px; font-weight: 800; color: #FF6B9D; margin-bottom: 6px; }
+  .coloring-menu-card p { font-size: 12px; color: var(--text-light); font-weight: 500; }
 </style>
 </head>
 <body>
@@ -787,6 +923,11 @@
     <div class="subtitle">Dạy học cho trẻ 4-7 tuổi</div>
   </div>
   <div class="header-right">
+    <div class="level-bar" id="levelBar">
+      <span class="level-emoji">🐣</span>
+      <span class="level-name" id="levelName">Bé Mới</span>
+      <div class="level-progress"><div class="level-fill" id="levelFill" style="width:0%"></div></div>
+    </div>
     <div class="star-count" id="starCount">⭐ 0</div>
     <button class="btn-home" onclick="goHome()">🏠</button>
     <button class="sound-toggle" onclick="toggleSound()" id="soundBtn" title="Bật/tắt âm thanh">🔊</button>
@@ -800,6 +941,16 @@
 
 <!-- REWARD CONTAINER -->
 <div class="reward-container" id="rewardContainer"></div>
+
+<!-- BADGE POPUP -->
+<div class="badge-popup" id="badgePopup">
+  <div class="badge-card">
+    <div class="badge-icon" id="badgeIcon"></div>
+    <h3 id="badgeTitle"></h3>
+    <p id="badgeDesc"></p>
+    <button onclick="closeBadge()">Tuyệt vời!</button>
+  </div>
+</div>
 
 <!-- ==================== MAIN MENU ==================== -->
 <div id="mainMenu" class="main-menu fade-in">
@@ -826,6 +977,11 @@
     <h2>Sinh Hoạt</h2>
     <p>Buổi sáng, đi học, ăn cơm, tắm rửa, an toàn, vệ sinh</p>
     <div class="progress-bar"><div class="progress-fill" id="prog4" style="width:0%"></div></div>
+  </div>
+  <div class="coloring-menu-card" onclick="openColoringMenu()" style="grid-column: 1 / -1;">
+    <div class="icon">🎨</div>
+    <h2>Tô Màu Vui</h2>
+    <p>Tô màu các hình dễ thương, rèn vận động tinh cho bé</p>
   </div>
 </div>
 
@@ -2450,6 +2606,399 @@ if ('serviceWorker' in navigator) {
 document.addEventListener('touchmove', e => {
   if (e.touches.length > 1) e.preventDefault();
 }, { passive: false });
+
+// ===================================================================
+// TEXT-TO-SPEECH
+// ===================================================================
+function speak(text) {
+  if (!APP.soundOn || !('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'vi-VN';
+  u.rate = 0.85;
+  u.pitch = 1.2;
+  // Try to find Vietnamese voice
+  const voices = speechSynthesis.getVoices();
+  const viVoice = voices.find(v => v.lang.startsWith('vi'));
+  if (viVoice) u.voice = viVoice;
+  speechSynthesis.speak(u);
+}
+// Preload voices
+if ('speechSynthesis' in window) {
+  speechSynthesis.getVoices();
+  speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
+}
+
+// Patch renderIdentifyQuestion to speak
+const origRenderIdentify = renderIdentifyQuestion;
+renderIdentifyQuestion = function() {
+  origRenderIdentify();
+  const lesson = APP.currentLesson;
+  const q = lesson.questions[APP.currentQ];
+  setTimeout(() => speak(q.instruction), 300);
+};
+
+// Patch renderMatchingGame to speak
+const origRenderMatching = renderMatchingGame;
+renderMatchingGame = function() {
+  origRenderMatching();
+  setTimeout(() => speak('Nối các cặp phù hợp với nhau'), 300);
+};
+
+// Patch renderSequenceGame to speak
+const origRenderSequence = renderSequenceGame;
+renderSequenceGame = function() {
+  origRenderSequence();
+  setTimeout(() => speak(APP.currentLesson.title), 300);
+};
+
+// Patch answerIdentify to speak feedback
+const origAnswerIdentify = answerIdentify;
+answerIdentify = function(idx) {
+  origAnswerIdentify(idx);
+  const q = APP.currentLesson.questions[APP.currentQ - 1];
+  if (!q) return;
+  const opt = q.options[idx];
+  if (opt.correct) setTimeout(() => speak('Giỏi lắm!'), 200);
+  else setTimeout(() => speak('Thử lại nhé'), 200);
+};
+
+// ===================================================================
+// BADGE & LEVEL SYSTEM
+// ===================================================================
+const LEVELS = [
+  { name: 'Bé Mới', emoji: '🐣', stars: 0 },
+  { name: 'Bé Chăm', emoji: '🐥', stars: 10 },
+  { name: 'Bé Giỏi', emoji: '🌟', stars: 25 },
+  { name: 'Bé Thông Minh', emoji: '🧠', stars: 50 },
+  { name: 'Nhà Thông Thái', emoji: '🎓', stars: 80 },
+  { name: 'Siêu Sao', emoji: '👑', stars: 120 },
+];
+
+const BADGES = [
+  { id: 'first_lesson', icon: '🎯', title: 'Bài Đầu Tiên', desc: 'Hoàn thành bài học đầu tiên', check: () => Object.keys(APP.scores).some(k => { const s=APP.scores[k]; return s&&s.total>0; }) },
+  { id: 'perfect', icon: '💯', title: 'Hoàn Hảo', desc: 'Đạt 100% một bài', check: () => Object.keys(APP.scores).some(k => { const s=APP.scores[k]; return s&&s.correct===s.total&&s.total>0; }) },
+  { id: 'star10', icon: '⭐', title: '10 Ngôi Sao', desc: 'Tích lũy 10 sao', check: () => APP.stars >= 10 },
+  { id: 'star25', icon: '🌟', title: '25 Ngôi Sao', desc: 'Tích lũy 25 sao', check: () => APP.stars >= 25 },
+  { id: 'star50', icon: '✨', title: '50 Ngôi Sao', desc: 'Tích lũy 50 sao', check: () => APP.stars >= 50 },
+  { id: 'cat1_done', icon: '🎨', title: 'Bé Nhận Biết', desc: 'Hoàn thành tất cả Nhận Biết', check: () => ALL_CATS[1].every(l => { const s=APP.scores[l.id]; return s&&s.correct===s.total&&s.total>0; }) },
+  { id: 'cat2_done', icon: '😊', title: 'Bé Giao Tiếp', desc: 'Hoàn thành tất cả Giao Tiếp', check: () => ALL_CATS[2].every(l => { const s=APP.scores[l.id]; return s&&s.correct===s.total&&s.total>0; }) },
+  { id: 'cat3_done', icon: '📖', title: 'Bé Ngôn Ngữ', desc: 'Hoàn thành tất cả Ngôn Ngữ', check: () => ALL_CATS[3].every(l => { const s=APP.scores[l.id]; return s&&s.correct===s.total&&s.total>0; }) },
+  { id: 'cat4_done', icon: '🌅', title: 'Bé Sinh Hoạt', desc: 'Hoàn thành tất cả Sinh Hoạt', check: () => ALL_CATS[4].every(l => { const s=APP.scores[l.id]; return s&&s.correct===s.total&&s.total>0; }) },
+  { id: 'all_done', icon: '👑', title: 'Siêu Nhân', desc: 'Hoàn thành tất cả bài học', check: () => [1,2,3,4].every(c => ALL_CATS[c].every(l => { const s=APP.scores[l.id]; return s&&s.correct===s.total&&s.total>0; })) },
+];
+
+APP.badges = APP.badges || [];
+APP.lastLevel = APP.lastLevel || 0;
+
+function getLevel(stars) {
+  let lvl = 0;
+  for (let i = LEVELS.length - 1; i >= 0; i--) {
+    if (stars >= LEVELS[i].stars) { lvl = i; break; }
+  }
+  return lvl;
+}
+
+function updateLevelBar() {
+  const lvl = getLevel(APP.stars);
+  const cur = LEVELS[lvl];
+  const next = LEVELS[lvl + 1];
+  document.getElementById('levelName').textContent = cur.name;
+  document.querySelector('.level-emoji').textContent = cur.emoji;
+  if (next) {
+    const pct = ((APP.stars - cur.stars) / (next.stars - cur.stars)) * 100;
+    document.getElementById('levelFill').style.width = Math.min(pct, 100) + '%';
+  } else {
+    document.getElementById('levelFill').style.width = '100%';
+  }
+  // Level up notification
+  if (lvl > APP.lastLevel && APP.lastLevel > 0) {
+    setTimeout(() => showBadgePopup(cur.emoji, 'Lên cấp: ' + cur.name + '!', 'Bé đã đạt cấp độ mới!'), 500);
+    speak('Chúc mừng! Bé đã lên cấp ' + cur.name);
+  }
+  APP.lastLevel = lvl;
+}
+
+function checkBadges() {
+  BADGES.forEach(b => {
+    if (!APP.badges.includes(b.id) && b.check()) {
+      APP.badges.push(b.id);
+      setTimeout(() => {
+        showBadgePopup(b.icon, b.title, b.desc);
+        speak('Chúc mừng! Bé đạt huy hiệu ' + b.title);
+      }, 600);
+    }
+  });
+}
+
+function showBadgePopup(icon, title, desc) {
+  document.getElementById('badgeIcon').textContent = icon;
+  document.getElementById('badgeTitle').textContent = title;
+  document.getElementById('badgeDesc').textContent = desc;
+  document.getElementById('badgePopup').classList.add('show');
+  playComplete(); spawnConfetti();
+}
+function closeBadge() { document.getElementById('badgePopup').classList.remove('show'); }
+
+// Patch addStars to check badges & level
+const origAddStars = addStars;
+addStars = function(n) {
+  origAddStars(n);
+  updateLevelBar();
+  checkBadges();
+};
+
+// Patch renderCompletion to show badges in completion screen
+const origRenderCompletion = renderCompletion;
+renderCompletion = function() {
+  origRenderCompletion();
+  checkBadges();
+  // Speak result
+  const lesson = APP.currentLesson;
+  const score = APP.scores[lesson.id];
+  const pct = Math.round((score.correct / score.total) * 100);
+  if (pct === 100) speak('Xuất sắc! Bé đúng hết rồi!');
+  else if (pct >= 70) speak('Giỏi lắm bé!');
+  else speak('Cố gắng thêm nhé!');
+};
+
+// Patch teacher panel to show badges
+const origShowTeacher = showTeacherPanel;
+showTeacherPanel = function() {
+  origShowTeacher();
+  const content = document.getElementById('teacherContent');
+  // Add badges section before close button
+  let badgeHtml = '<h3 style="margin-top:20px; font-size:16px; color:#FF6B9D">🏅 Huy hiệu</h3>';
+  badgeHtml += '<div class="badges-grid">';
+  BADGES.forEach(b => {
+    const earned = APP.badges.includes(b.id);
+    badgeHtml += `<div class="badge-mini ${earned ? 'earned' : ''}" title="${b.title}: ${b.desc}">${b.icon}</div>`;
+  });
+  badgeHtml += '</div>';
+  // Add level info
+  const lvl = getLevel(APP.stars);
+  badgeHtml += `<p style="text-align:center; font-weight:700; color:var(--text-light)">Cấp độ: ${LEVELS[lvl].emoji} ${LEVELS[lvl].name}</p>`;
+  const closeBtn = content.querySelector('.btn-close-panel');
+  if (closeBtn) closeBtn.parentElement.insertAdjacentHTML('beforebegin', badgeHtml);
+};
+
+// ===================================================================
+// COLORING MINI-GAME
+// ===================================================================
+const COLORING_TEMPLATES = [
+  { name: 'Ngôi nhà', icon: '🏠', draw: drawHouse },
+  { name: 'Cây xanh', icon: '🌳', draw: drawTree },
+  { name: 'Mặt trời', icon: '☀️', draw: drawSun },
+  { name: 'Con cá', icon: '🐟', draw: drawFish },
+  { name: 'Bông hoa', icon: '🌸', draw: drawFlower },
+  { name: 'Con bướm', icon: '🦋', draw: drawButterfly },
+];
+
+const PALETTE = ['#FF4757','#FF6B9D','#FFA502','#FECA57','#2ED573','#45AAF2','#A55EEA','#2D3436','#FFFFFF'];
+let colorCtx, currentColor = '#FF4757', brushSize = 8, isDrawing = false;
+
+function openColoringMenu() {
+  playClick();
+  document.getElementById('mainMenu').style.display = 'none';
+  const ls = document.getElementById('lessonScreen');
+  ls.style.display = 'block'; ls.classList.add('active');
+  let html = `<h2 style="text-align:center; font-size:24px; margin-bottom:16px; color:#FF6B9D">🎨 Tô Màu Vui</h2>`;
+  html += `<div class="sub-menu">`;
+  COLORING_TEMPLATES.forEach((t, i) => {
+    html += `<div class="sub-card" onclick="startColoring(${i})" style="border-color:#FFD0E0">
+      <div class="icon">${t.icon}</div>
+      <h3>${t.name}</h3>
+    </div>`;
+  });
+  html += `</div>`;
+  html += `<div style="text-align:center"><button class="btn-nav" onclick="goHome()" style="font-size:14px; padding:10px 20px">🏠 Trang chủ</button></div>`;
+  ls.innerHTML = html;
+  window.scrollTo(0, 0);
+  speak('Chọn hình bé muốn tô màu');
+}
+
+function startColoring(idx) {
+  playClick();
+  const tpl = COLORING_TEMPLATES[idx];
+  const ls = document.getElementById('lessonScreen');
+  const cw = Math.min(window.innerWidth - 40, 500);
+  const ch = Math.round(cw * 0.75);
+  let html = `<div class="color-game-area fade-in">`;
+  html += `<h2 style="margin-top:8px; font-size:20px">🎨 Tô màu: ${tpl.name}</h2>`;
+  html += `<div class="color-palette" id="colorPalette">`;
+  PALETTE.forEach((c, i) => {
+    html += `<div class="palette-btn ${i===0?'active':''}" style="background:${c}${c==='#FFFFFF'?';border-color:#CCC':''}" onclick="pickColor('${c}', this)"></div>`;
+  });
+  html += `</div>`;
+  html += `<div class="brush-size"><label>Cọ:</label><input type="range" min="3" max="30" value="8" oninput="brushSize=this.value"><span>🖌️</span></div>`;
+  html += `<canvas class="coloring-canvas" id="colorCanvas" width="${cw}" height="${ch}"></canvas>`;
+  html += `<div class="nav-row">
+    <button class="btn-nav orange" onclick="clearCanvas(${idx})">🗑️ Xóa</button>
+    <button class="btn-nav green" onclick="addStars(2); openColoringMenu()">✅ Xong (+2⭐)</button>
+    <button class="btn-nav" onclick="openColoringMenu()">↩️ Quay lại</button>
+  </div></div>`;
+  ls.innerHTML = html;
+  const canvas = document.getElementById('colorCanvas');
+  colorCtx = canvas.getContext('2d');
+  colorCtx.fillStyle = '#FFFFFF';
+  colorCtx.fillRect(0, 0, cw, ch);
+  tpl.draw(colorCtx, cw, ch);
+  // Touch & Mouse events
+  canvas.addEventListener('mousedown', startDraw);
+  canvas.addEventListener('mousemove', draw);
+  canvas.addEventListener('mouseup', stopDraw);
+  canvas.addEventListener('mouseleave', stopDraw);
+  canvas.addEventListener('touchstart', e => { e.preventDefault(); startDraw(getTouchPos(canvas, e)); }, {passive:false});
+  canvas.addEventListener('touchmove', e => { e.preventDefault(); draw(getTouchPos(canvas, e)); }, {passive:false});
+  canvas.addEventListener('touchend', stopDraw);
+  speak('Tô màu hình ' + tpl.name + ' nào!');
+}
+
+function getTouchPos(canvas, e) {
+  const r = canvas.getBoundingClientRect();
+  const t = e.touches[0];
+  return { offsetX: (t.clientX - r.left) * (canvas.width / r.width), offsetY: (t.clientY - r.top) * (canvas.height / r.height) };
+}
+
+function pickColor(c, el) {
+  currentColor = c;
+  document.querySelectorAll('.palette-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function startDraw(e) { isDrawing = true; draw(e); }
+function stopDraw() { isDrawing = false; colorCtx.beginPath(); }
+function draw(e) {
+  if (!isDrawing || !colorCtx) return;
+  colorCtx.lineWidth = brushSize;
+  colorCtx.lineCap = 'round';
+  colorCtx.strokeStyle = currentColor;
+  colorCtx.lineTo(e.offsetX, e.offsetY);
+  colorCtx.stroke();
+  colorCtx.beginPath();
+  colorCtx.moveTo(e.offsetX, e.offsetY);
+}
+function clearCanvas(idx) {
+  const tpl = COLORING_TEMPLATES[idx];
+  const canvas = document.getElementById('colorCanvas');
+  colorCtx.fillStyle = '#FFFFFF';
+  colorCtx.fillRect(0, 0, canvas.width, canvas.height);
+  tpl.draw(colorCtx, canvas.width, canvas.height);
+}
+
+// Drawing templates
+function drawHouse(ctx, w, h) {
+  ctx.strokeStyle = '#333'; ctx.lineWidth = 3;
+  // Body
+  ctx.strokeRect(w*0.25, h*0.4, w*0.5, h*0.5);
+  // Roof
+  ctx.beginPath(); ctx.moveTo(w*0.2, h*0.4); ctx.lineTo(w*0.5, h*0.12); ctx.lineTo(w*0.8, h*0.4); ctx.closePath(); ctx.stroke();
+  // Door
+  ctx.strokeRect(w*0.42, h*0.6, w*0.16, h*0.3);
+  // Windows
+  ctx.strokeRect(w*0.28, h*0.48, w*0.12, h*0.12);
+  ctx.strokeRect(w*0.6, h*0.48, w*0.12, h*0.12);
+}
+function drawTree(ctx, w, h) {
+  ctx.strokeStyle = '#333'; ctx.lineWidth = 3;
+  // Trunk
+  ctx.strokeRect(w*0.43, h*0.55, w*0.14, h*0.35);
+  // Crown circles
+  ctx.beginPath(); ctx.arc(w*0.5, h*0.35, w*0.22, 0, Math.PI*2); ctx.stroke();
+  ctx.beginPath(); ctx.arc(w*0.35, h*0.42, w*0.14, 0, Math.PI*2); ctx.stroke();
+  ctx.beginPath(); ctx.arc(w*0.65, h*0.42, w*0.14, 0, Math.PI*2); ctx.stroke();
+}
+function drawSun(ctx, w, h) {
+  ctx.strokeStyle = '#333'; ctx.lineWidth = 3;
+  const cx = w*0.5, cy = h*0.45, r = w*0.18;
+  // Sun circle
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2); ctx.stroke();
+  // Rays
+  for (let i = 0; i < 12; i++) {
+    const a = (i * 30) * Math.PI / 180;
+    ctx.beginPath();
+    ctx.moveTo(cx + Math.cos(a)*(r+10), cy + Math.sin(a)*(r+10));
+    ctx.lineTo(cx + Math.cos(a)*(r+30), cy + Math.sin(a)*(r+30));
+    ctx.stroke();
+  }
+  // Eyes
+  ctx.beginPath(); ctx.arc(cx-r*0.3, cy-r*0.15, 5, 0, Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.arc(cx+r*0.3, cy-r*0.15, 5, 0, Math.PI*2); ctx.fill();
+  // Smile
+  ctx.beginPath(); ctx.arc(cx, cy+r*0.1, r*0.35, 0.1*Math.PI, 0.9*Math.PI); ctx.stroke();
+}
+function drawFish(ctx, w, h) {
+  ctx.strokeStyle = '#333'; ctx.lineWidth = 3;
+  const cx = w*0.45, cy = h*0.5;
+  // Body (ellipse)
+  ctx.beginPath(); ctx.ellipse(cx, cy, w*0.25, h*0.2, 0, 0, Math.PI*2); ctx.stroke();
+  // Tail
+  ctx.beginPath(); ctx.moveTo(w*0.7, cy); ctx.lineTo(w*0.85, cy-h*0.15); ctx.lineTo(w*0.85, cy+h*0.15); ctx.closePath(); ctx.stroke();
+  // Eye
+  ctx.beginPath(); ctx.arc(cx-w*0.1, cy-h*0.04, 6, 0, Math.PI*2); ctx.fill();
+  // Fins
+  ctx.beginPath(); ctx.moveTo(cx, cy-h*0.2); ctx.lineTo(cx-w*0.05, cy-h*0.35); ctx.lineTo(cx+w*0.08, cy-h*0.2); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx+w*0.05, cy+h*0.2); ctx.lineTo(cx, cy+h*0.32); ctx.lineTo(cx+w*0.12, cy+h*0.2); ctx.stroke();
+}
+function drawFlower(ctx, w, h) {
+  ctx.strokeStyle = '#333'; ctx.lineWidth = 3;
+  const cx = w*0.5, cy = h*0.38, r = w*0.08;
+  // Petals
+  for (let i = 0; i < 6; i++) {
+    const a = (i * 60) * Math.PI / 180;
+    const px = cx + Math.cos(a) * r * 1.8;
+    const py = cy + Math.sin(a) * r * 1.8;
+    ctx.beginPath(); ctx.arc(px, py, r, 0, Math.PI*2); ctx.stroke();
+  }
+  // Center
+  ctx.beginPath(); ctx.arc(cx, cy, r*0.8, 0, Math.PI*2); ctx.stroke();
+  // Stem
+  ctx.beginPath(); ctx.moveTo(cx, cy+r*2.5); ctx.lineTo(cx, h*0.9); ctx.stroke();
+  // Leaves
+  ctx.beginPath(); ctx.ellipse(cx-w*0.08, h*0.65, w*0.08, h*0.04, -0.3, 0, Math.PI*2); ctx.stroke();
+  ctx.beginPath(); ctx.ellipse(cx+w*0.08, h*0.72, w*0.08, h*0.04, 0.3, 0, Math.PI*2); ctx.stroke();
+}
+function drawButterfly(ctx, w, h) {
+  ctx.strokeStyle = '#333'; ctx.lineWidth = 3;
+  const cx = w*0.5, cy = h*0.5;
+  // Upper wings
+  ctx.beginPath(); ctx.ellipse(cx-w*0.15, cy-h*0.1, w*0.15, h*0.18, -0.2, 0, Math.PI*2); ctx.stroke();
+  ctx.beginPath(); ctx.ellipse(cx+w*0.15, cy-h*0.1, w*0.15, h*0.18, 0.2, 0, Math.PI*2); ctx.stroke();
+  // Lower wings
+  ctx.beginPath(); ctx.ellipse(cx-w*0.12, cy+h*0.12, w*0.1, h*0.12, -0.3, 0, Math.PI*2); ctx.stroke();
+  ctx.beginPath(); ctx.ellipse(cx+w*0.12, cy+h*0.12, w*0.1, h*0.12, 0.3, 0, Math.PI*2); ctx.stroke();
+  // Body
+  ctx.beginPath(); ctx.ellipse(cx, cy, w*0.02, h*0.22, 0, 0, Math.PI*2); ctx.stroke();
+  // Antennae
+  ctx.beginPath(); ctx.moveTo(cx-3, cy-h*0.22); ctx.quadraticCurveTo(cx-w*0.08, cy-h*0.38, cx-w*0.12, cy-h*0.35); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx+3, cy-h*0.22); ctx.quadraticCurveTo(cx+w*0.08, cy-h*0.38, cx+w*0.12, cy-h*0.35); ctx.stroke();
+}
+
+// ===================================================================
+// INIT PATCHES
+// ===================================================================
+// Load badges from save
+const origLoadState = loadState;
+loadState = function() {
+  origLoadState();
+  try {
+    const d = JSON.parse(localStorage.getItem('beHocVui'));
+    if (d) {
+      APP.badges = d.badges || [];
+      APP.lastLevel = d.lastLevel || getLevel(APP.stars);
+    }
+  } catch(e) {}
+  updateLevelBar();
+};
+
+// Save badges
+const origSaveState = saveState;
+saveState = function() {
+  try { localStorage.setItem('beHocVui', JSON.stringify({stars:APP.stars, scores:APP.scores, badges:APP.badges, lastLevel:APP.lastLevel})); } catch(e) {}
+};
+
+// Re-init
+loadState();
 </script>
 
 </body>

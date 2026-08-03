@@ -1,4 +1,4 @@
-const CACHE_NAME = 'be-hoc-vui-v1';
+const CACHE_NAME = 'be-hoc-vui-v3';
 const ASSETS = [
   './',
   './index.html',
